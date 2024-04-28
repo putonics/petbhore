@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:petbhore/const/colors.dart';
+import 'package:petbhore/data/colors.dart';
+import 'package:petbhore/screens/intro_model.dart';
 import 'package:petbhore/utils/helper.dart';
-import 'home_screen.dart';
+import 'home/home_screen.dart';
 
 class IntroScreen extends StatefulWidget {
   static const routeName = "/introScreen";
@@ -15,26 +16,6 @@ class IntroScreen extends StatefulWidget {
 class _IntroScreenState extends State<IntroScreen> {
   PageController? _controller;
   int count = 0;
-
-  final List<Map<String, String>> _pages = [
-    {
-      "image": "vector1.png",
-      "title": "Find Food You Love",
-      "desc":
-          "Discover the best foods from over 1,000 restaurants and fast delivery to your doorstep"
-    },
-    {
-      "image": "vector2.png",
-      "title": "Fast Delivery",
-      "desc": "Fast food delivery to your home, office wherever you are"
-    },
-    {
-      "image": "vector3.png",
-      "title": "Live Tracking",
-      "desc":
-          "Real time tracking of your food on the app once you placed the order"
-    },
-  ];
 
   @override
   void initState() {
@@ -56,7 +37,7 @@ class _IntroScreenState extends State<IntroScreen> {
               children: [
                 const Spacer(),
                 SizedBox(
-                  height: 400,
+                  height: 500,
                   width: double.infinity,
                   child: PageView.builder(
                     controller: _controller,
@@ -66,10 +47,26 @@ class _IntroScreenState extends State<IntroScreen> {
                       });
                     },
                     itemBuilder: (context, index) {
-                      return Image.asset(Helper.getAssetName(
-                          _pages[index]["image"]!, "virtual"));
+                      return Column(
+                        children: [
+                          IntroModel.isNetworkImage
+                              ? Image.network(IntroModel.data[index].image)
+                              : Image.asset(IntroModel.data[index].image),
+                          const Spacer(),
+                          Text(
+                            IntroModel.data[index].title,
+                            style: Helper.getTheme(context).titleLarge,
+                          ),
+                          const Spacer(),
+                          Text(
+                            IntroModel.data[index].desc,
+                            textAlign: TextAlign.center,
+                          ),
+                          const Spacer(),
+                        ],
+                      );
                     },
-                    itemCount: _pages.length,
+                    itemCount: IntroModel.data.length,
                   ),
                 ),
                 Row(
@@ -97,16 +94,6 @@ class _IntroScreenState extends State<IntroScreen> {
                           count == 2 ? AppColor.orange : AppColor.placeholder,
                     )
                   ],
-                ),
-                const Spacer(),
-                Text(
-                  _pages[count]["title"]!,
-                  style: Helper.getTheme(context).titleLarge,
-                ),
-                const Spacer(),
-                Text(
-                  _pages[count]["desc"]!,
-                  textAlign: TextAlign.center,
                 ),
                 const Spacer(),
                 SizedBox(

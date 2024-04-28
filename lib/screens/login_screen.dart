@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:petbhore/const/colors.dart';
+import 'package:petbhore/data/colors.dart';
+import 'package:petbhore/data/images.dart';
 import 'package:petbhore/utils/helper.dart';
 import 'package:petbhore/widgets/custom_text_input.dart';
 import 'forget_pw_screen.dart';
@@ -79,12 +80,7 @@ class LoginScreen extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Image.asset(
-                          Helper.getAssetName(
-                            "fb.png",
-                            "virtual",
-                          ),
-                        ),
+                        Image.asset(IconImage.facebook),
                         const SizedBox(
                           width: 30,
                         ),
@@ -109,12 +105,7 @@ class LoginScreen extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Image.asset(
-                          Helper.getAssetName(
-                            "google.png",
-                            "virtual",
-                          ),
-                        ),
+                        Image.asset(IconImage.google),
                         const SizedBox(
                           width: 30,
                         ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:petbhore/cards/noti_card.dart';
-import 'package:petbhore/const/colors.dart';
+import 'package:petbhore/data/colors.dart';
 import 'package:petbhore/utils/helper.dart';
 import 'package:petbhore/widgets/custom_nav_bar.dart';
 

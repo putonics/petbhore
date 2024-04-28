@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:petbhore/cards/more_card.dart';
+import 'package:petbhore/data/images.dart';
 import 'package:petbhore/utils/helper.dart';
 import 'package:petbhore/widgets/custom_nav_bar.dart';
 
@@ -32,18 +33,14 @@ class MoreScreen extends StatelessWidget {
                         "More",
                         style: Helper.getTheme(context).headlineSmall,
                       ),
-                      Image.asset(
-                        Helper.getAssetName("cart.png", "virtual"),
-                      ),
+                      Image.asset(IconImage.cart),
                     ],
                   ),
                   const SizedBox(
                     height: 20,
                   ),
                   MoreCard(
-                    image: Image.asset(
-                      Helper.getAssetName("income.png", "virtual"),
-                    ),
+                    image: Image.asset(IconImage.income),
                     name: "Payment Details",
                     handler: () {
                       Navigator.of(context).pushNamed(PaymentScreen.routeName);
@@ -53,9 +50,7 @@ class MoreScreen extends StatelessWidget {
                     height: 10,
                   ),
                   MoreCard(
-                    image: Image.asset(
-                      Helper.getAssetName("shopping_bag.png", "virtual"),
-                    ),
+                    image: Image.asset(IconImage.shoppingBag),
                     name: "My Orders",
                     handler: () {
                       Navigator.of(context).pushNamed(MyOrderScreen.routeName);
@@ -65,9 +60,7 @@ class MoreScreen extends StatelessWidget {
                     height: 10,
                   ),
                   MoreCard(
-                    image: Image.asset(
-                      Helper.getAssetName("noti.png", "virtual"),
-                    ),
+                    image: Image.asset(IconImage.notification),
                     name: "Notifications",
                     isNoti: true,
                     handler: () {
@@ -79,9 +72,7 @@ class MoreScreen extends StatelessWidget {
                     height: 10,
                   ),
                   MoreCard(
-                    image: Image.asset(
-                      Helper.getAssetName("mail.png", "virtual"),
-                    ),
+                    image: Image.asset(IconImage.mail),
                     name: "Inbox",
                     handler: () {
                       Navigator.of(context).pushNamed(InboxScreen.routeName);
@@ -91,9 +82,7 @@ class MoreScreen extends StatelessWidget {
                     height: 10,
                   ),
                   MoreCard(
-                    image: Image.asset(
-                      Helper.getAssetName("info.png", "virtual"),
-                    ),
+                    image: Image.asset(IconImage.info),
                     name: "About Us",
                     handler: () {
                       Navigator.of(context).pushNamed(AboutScreen.routeName);

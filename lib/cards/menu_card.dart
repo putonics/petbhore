@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:petbhore/const/colors.dart';
+import 'package:petbhore/data/colors.dart';
+import 'package:petbhore/data/images.dart';
 import 'package:petbhore/utils/helper.dart';
 
 class MenuCard extends StatelessWidget {
@@ -83,9 +84,7 @@ class MenuCard extends StatelessWidget {
                       blurRadius: 5,
                     )
                   ]),
-              child: Image.asset(
-                Helper.getAssetName("next_filled.png", "virtual"),
-              ),
+              child: Image.asset(IconImage.rightArrow),
             ),
           ),
         ),

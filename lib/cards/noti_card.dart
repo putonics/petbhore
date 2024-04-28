@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:petbhore/const/colors.dart';
+import 'package:petbhore/data/colors.dart';
 
 class NotiCard extends StatelessWidget {
   final String time;
@@ -15,7 +15,6 @@ class NotiCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 60,
       width: double.infinity,
       decoration: BoxDecoration(
         color: color,

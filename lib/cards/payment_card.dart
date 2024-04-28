@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:petbhore/const/colors.dart';
+import 'package:petbhore/data/colors.dart';
 
 class PaymentCard extends StatelessWidget {
   final Widget widget;

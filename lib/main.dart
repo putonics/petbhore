@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:petbhore/const/colors.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:petbhore/data/colors.dart';
 import 'package:petbhore/screens/about_screen.dart';
 import 'package:petbhore/screens/change_address_screen.dart';
 import 'package:petbhore/screens/checkout_screen.dart';
 import 'package:petbhore/screens/dessert_screen.dart';
 import 'package:petbhore/screens/forget_pw_screen.dart';
-import 'package:petbhore/screens/home_screen.dart';
+import 'package:petbhore/screens/home/home_screen.dart';
 import 'package:petbhore/screens/inbox_screen.dart';
 import 'package:petbhore/screens/individual_item.dart';
 import 'package:petbhore/screens/intro_screen.dart';
@@ -24,7 +25,7 @@ import 'package:petbhore/screens/sign_up_screen.dart';
 import 'package:petbhore/screens/splash_screen.dart';
 
 void main() {
-  runApp(const MainApp());
+  runApp(const ProviderScope(child: MainApp()));
 }
 
 class MainApp extends StatelessWidget {

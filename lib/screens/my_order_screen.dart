@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:petbhore/cards/burger_card.dart';
-import 'package:petbhore/const/colors.dart';
+import 'package:petbhore/data/colors.dart';
 import 'package:petbhore/utils/helper.dart';
 import 'package:petbhore/widgets/custom_nav_bar.dart';
 import 'checkout_screen.dart';
@@ -41,7 +41,7 @@ class MyOrderScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20.0),
                   child: SizedBox(
-                    height: 80,
+                    height: 90,
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [

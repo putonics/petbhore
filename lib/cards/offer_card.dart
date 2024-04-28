@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:petbhore/const/colors.dart';
+import 'package:petbhore/data/colors.dart';
 import 'package:petbhore/utils/helper.dart';
 
 class OfferCard extends StatelessWidget {

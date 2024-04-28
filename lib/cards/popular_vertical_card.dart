@@ -4,48 +4,68 @@ import 'package:petbhore/data/colors.dart';
 import 'package:petbhore/data/images.dart';
 import 'package:petbhore/utils/helper.dart';
 
-class RecentItemCard extends StatelessWidget {
-  final AdvertisementCardModel data;
-  const RecentItemCard({
-    Key? key,
+class PopularVerticalCard extends StatelessWidget {
+  const PopularVerticalCard({
+    super.key,
     required this.data,
-  }) : super(key: key);
+  });
+
+  final AdvertisementCardModel data;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () =>
           data.link == "" ? null : Navigator.of(context).pushNamed(data.link),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(10),
-            child: SizedBox(
-              width: 80,
-              height: 80,
+      child: SizedBox(
+        height: 270,
+        width: double.infinity,
+        child: Column(
+          children: [
+            SizedBox(
+              height: 200,
+              width: double.infinity,
               child: data.isNetworkImage
                   ? Image.network(data.image, fit: BoxFit.cover)
                   : Image.asset(data.image, fit: BoxFit.cover),
             ),
-          ),
-          const SizedBox(
-            width: 10,
-          ),
-          Expanded(
-            child: SizedBox(
-              height: 100,
+            const SizedBox(
+              height: 10,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 20,
+              ),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    data.title,
-                    style: Helper.getTheme(context)
-                        .headlineMedium
-                        ?.copyWith(color: AppColor.primary),
+                  Row(
+                    children: [
+                      Text(
+                        data.title,
+                        style: Helper.getTheme(context).displaySmall,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 5,
                   ),
                   Row(
                     children: [
+                      Image.asset(IconImage.starFilled),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      Text(
+                        "${data.rating}",
+                        style: const TextStyle(color: AppColor.orange),
+                      ),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      Text("(${data.ratingCount} ratings)"),
+                      const SizedBox(
+                        width: 5,
+                      ),
                       Text(data.type),
                       const SizedBox(
                         width: 5,
@@ -64,32 +84,13 @@ class RecentItemCard extends StatelessWidget {
                         width: 5,
                       ),
                       Text(data.name),
-                      const SizedBox(
-                        width: 20,
-                      ),
                     ],
                   ),
-                  Row(
-                    children: [
-                      Image.asset(IconImage.starFilled),
-                      const SizedBox(
-                        width: 5,
-                      ),
-                      Text(
-                        "${data.rating}",
-                        style: const TextStyle(
-                          color: AppColor.orange,
-                        ),
-                      ),
-                      const SizedBox(width: 10),
-                      Text('(${data.ratingCount}) Ratings')
-                    ],
-                  )
                 ],
               ),
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }

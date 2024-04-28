@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:petbhore/cards/payment_card.dart';
-import 'package:petbhore/const/colors.dart';
+import 'package:petbhore/data/colors.dart';
 import 'package:petbhore/utils/helper.dart';
 import 'package:petbhore/widgets/custom_nav_bar.dart';
 import 'package:petbhore/widgets/custom_text_input.dart';
 import 'change_address_screen.dart';
-import 'home_screen.dart';
+import 'home/home_screen.dart';
 
 class CheckoutScreen extends StatelessWidget {
   static const routeName = "/checkoutScreen";

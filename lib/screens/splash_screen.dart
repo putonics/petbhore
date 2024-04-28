@@ -1,6 +1,6 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
+import 'package:petbhore/data/images.dart';
 import 'package:petbhore/screens/landing_screen.dart';
 import 'package:petbhore/utils/helper.dart';
 
@@ -33,15 +33,13 @@ class _SplashScreenState extends State<SplashScreen> {
               height: double.infinity,
               width: double.infinity,
               child: Image.asset(
-                Helper.getAssetName("splashIcon.png", "virtual"),
+                AppImage.splashBackground,
                 fit: BoxFit.fill,
               ),
             ),
             Align(
               alignment: Alignment.center,
-              child: Image.asset(
-                Helper.getAssetName("MealMonkeyLogo.png", "virtual"),
-              ),
+              child: Image.asset(AppImage.logo),
             ),
           ],
         ),

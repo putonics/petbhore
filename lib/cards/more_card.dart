@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:petbhore/const/colors.dart';
+import 'package:petbhore/data/colors.dart';
 
 class MoreCard extends StatelessWidget {
   final String name;
@@ -27,9 +27,6 @@ class MoreCard extends StatelessWidget {
             Container(
               height: double.infinity,
               width: double.infinity,
-              margin: const EdgeInsets.only(
-                right: 20,
-              ),
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               decoration: ShapeDecoration(
                 shape: RoundedRectangleBorder(

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:petbhore/const/colors.dart';
+import 'package:petbhore/data/colors.dart';
 import 'package:petbhore/utils/helper.dart';
 import 'package:petbhore/widgets/custom_nav_bar.dart';
 import 'package:petbhore/widgets/custom_text_input.dart';
@@ -67,7 +67,7 @@ class PaymentScreen extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  height: 170,
+                  height: 180,
                   width: Helper.getScreenWidth(context),
                   decoration: BoxDecoration(
                     color: AppColor.placeholderBg,

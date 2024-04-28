@@ -1,12 +1,12 @@
 import 'package:shadow_clip/shadow_clip.dart';
 import 'package:flutter/material.dart';
-import '../const/colors.dart';
-import '../screens/home_screen.dart';
-import '../screens/menu_screen.dart';
-import '../screens/more_screen.dart';
-import '../screens/offer_screen.dart';
-import '../screens/profile_screen.dart';
-import '../utils/helper.dart';
+import 'package:petbhore/data/colors.dart';
+import 'package:petbhore/screens/home/home_screen.dart';
+import 'package:petbhore/screens/menu_screen.dart';
+import 'package:petbhore/screens/more_screen.dart';
+import 'package:petbhore/screens/offer_screen.dart';
+import 'package:petbhore/screens/profile_screen.dart';
+import 'package:petbhore/utils/helper.dart';
 
 class CustomNavBar extends StatelessWidget {
   final bool home;

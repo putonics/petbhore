@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:petbhore/data/images.dart';
 import 'package:shadow_clip/shadow_clip.dart';
-import 'package:petbhore/const/colors.dart';
+import 'package:petbhore/data/colors.dart';
 import 'package:petbhore/utils/helper.dart';
 import 'login_screen.dart';
 
@@ -37,18 +38,13 @@ class LandingScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
-                child: Image.asset(
-                  Helper.getAssetName("login_bg.png", "virtual"),
-                  fit: BoxFit.cover,
-                ),
+                child: Image.asset(AppImage.loginBackground, fit: BoxFit.cover),
               ),
             ),
           ),
           Align(
             alignment: Alignment.center,
-            child: Image.asset(
-              Helper.getAssetName("MealMonkeyLogo.png", "virtual"),
-            ),
+            child: Image.asset(AppImage.logo),
           ),
           Align(
             alignment: Alignment.bottomCenter,
