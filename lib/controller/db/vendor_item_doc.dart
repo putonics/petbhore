@@ -1,19 +1,13 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
-
 import 'package:flutter/foundation.dart';
+import 'package:petbhore/controller/db/vendor_delivery_time.dart';
+import 'package:petbhore/controller/db/vendor_item_addon.dart';
 
-import 'package:petbhore/controller/stocked_items/addon_model.dart';
-
-class ItemModel {
-  static const deliveryTimes = {
-    "Morning 8-9am": 8,
-    "Afternoon 12-1pm": 12,
-    "Evening 6-7pm": 18,
-    "Night 8-9pm": 20,
-  };
-
-  final String id;
+/// Created and maintained by the vendor
+class VendorItemDoc {
+  //id should be the timestamp i.e when this object is created
+  final int id;
   final String name;
   final List<String> images;
   //If it is adon only, then it will only be shown in the adon list; and will not be displayed at item list.
@@ -29,7 +23,7 @@ class ItemModel {
   //The price for the instant order should be higher than the price for the pre order.
   final int instantOrderPrice;
   //Customer will get the option of available times for preorder delivery.
-  final List<String> availableDeliveryTimes;
+  final List<VendorDeliveryTime> availableDeliveryTimes;
   //The pre order gap is the gap duration between ordering and availableDeliveryTimes in case of pre-ordering.
   final int preOrderGap;
   //The pre order price should be lesser than that of the instant order.
@@ -37,9 +31,9 @@ class ItemModel {
   //The pre order qty must have limit.
   final int maxQtyPreOrdered;
   //The items that can be addons with this item
-  final List<AddonModel> addons;
+  final List<VendorItemAddon> addons;
 
-  ItemModel({
+  VendorItemDoc({
     required this.id,
     required this.name,
     required this.images,
@@ -56,8 +50,8 @@ class ItemModel {
     required this.addons,
   });
 
-  ItemModel copyWith({
-    String? id,
+  VendorItemDoc copyWith({
+    int? id,
     String? name,
     List<String>? images,
     bool? isAdonOnly,
@@ -66,13 +60,13 @@ class ItemModel {
     bool? canSugarFree,
     int? instantOrderAvailableQty,
     int? instantOrderPrice,
-    List<String>? availableDeliveryTimes,
+    List<VendorDeliveryTime>? availableDeliveryTimes,
     int? preOrderGap,
     int? preOrderPrice,
     int? maxQtyPreOrdered,
-    List<AddonModel>? addons,
+    List<VendorItemAddon>? addons,
   }) {
-    return ItemModel(
+    return VendorItemDoc(
       id: id ?? this.id,
       name: name ?? this.name,
       images: images ?? this.images,
@@ -103,7 +97,8 @@ class ItemModel {
       'canSugarFree': canSugarFree,
       'instantOrderAvailableQty': instantOrderAvailableQty,
       'instantOrderPrice': instantOrderPrice,
-      'availableDeliveryTimes': availableDeliveryTimes,
+      'availableDeliveryTimes':
+          availableDeliveryTimes.map((x) => x.toMap()).toList(),
       'preOrderGap': preOrderGap,
       'preOrderPrice': preOrderPrice,
       'maxQtyPreOrdered': maxQtyPreOrdered,
@@ -111,25 +106,29 @@ class ItemModel {
     };
   }
 
-  factory ItemModel.fromMap(Map<String, dynamic> map) {
-    return ItemModel(
-      id: map['id'] as String,
+  factory VendorItemDoc.fromMap(Map<String, dynamic> map) {
+    return VendorItemDoc(
+      id: map['id'] as int,
       name: map['name'] as String,
-      images: List<String>.from(map['images'] as List<String>),
+      images: List<String>.from((map['images'] as List<String>)),
       isAdonOnly: map['isAdonOnly'] as bool,
       category: map['category'] as String,
       isVeg: map['isVeg'] as bool,
       canSugarFree: map['canSugarFree'] as bool,
       instantOrderAvailableQty: map['instantOrderAvailableQty'] as int,
       instantOrderPrice: map['instantOrderPrice'] as int,
-      availableDeliveryTimes:
-          List<String>.from(map['availableDeliveryTimes'] as List<String>),
+      availableDeliveryTimes: List<VendorDeliveryTime>.from(
+        (map['availableDeliveryTimes'] as List<Map<String, dynamic>>)
+            .map<VendorDeliveryTime>(
+          (x) => VendorDeliveryTime.fromMap(x),
+        ),
+      ),
       preOrderGap: map['preOrderGap'] as int,
       preOrderPrice: map['preOrderPrice'] as int,
       maxQtyPreOrdered: map['maxQtyPreOrdered'] as int,
-      addons: List<AddonModel>.from(
-        (map['addons'] as List<int>).map<AddonModel>(
-          (x) => AddonModel.fromMap(x as Map<String, dynamic>),
+      addons: List<VendorItemAddon>.from(
+        (map['addons'] as List<Map<String, dynamic>>).map<VendorItemAddon>(
+          (x) => VendorItemAddon.fromMap(x),
         ),
       ),
     );
@@ -137,16 +136,16 @@ class ItemModel {
 
   String toJson() => json.encode(toMap());
 
-  factory ItemModel.fromJson(String source) =>
-      ItemModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory VendorItemDoc.fromJson(String source) =>
+      VendorItemDoc.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
-    return 'ItemModel(id: $id, name: $name, images: $images, isAdonOnly: $isAdonOnly, category: $category, isVeg: $isVeg, canSugarFree: $canSugarFree, instantOrderAvailableQty: $instantOrderAvailableQty, instantOrderPrice: $instantOrderPrice, availableDeliveryTimes: $availableDeliveryTimes, preOrderGap: $preOrderGap, preOrderPrice: $preOrderPrice, maxQtyPreOrdered: $maxQtyPreOrdered, addons: $addons)';
+    return 'VendorItemDoc(id: $id, name: $name, images: $images, isAdonOnly: $isAdonOnly, category: $category, isVeg: $isVeg, canSugarFree: $canSugarFree, instantOrderAvailableQty: $instantOrderAvailableQty, instantOrderPrice: $instantOrderPrice, availableDeliveryTimes: $availableDeliveryTimes, preOrderGap: $preOrderGap, preOrderPrice: $preOrderPrice, maxQtyPreOrdered: $maxQtyPreOrdered, addons: $addons)';
   }
 
   @override
-  bool operator ==(covariant ItemModel other) {
+  bool operator ==(covariant VendorItemDoc other) {
     if (identical(this, other)) return true;
 
     return other.id == id &&
