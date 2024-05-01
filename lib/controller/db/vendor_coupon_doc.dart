@@ -21,6 +21,8 @@ class VendorCouponDoc {
   final int discount;
   //Whenever this document is modified.
   final int modifiedOn;
+  //Only updated when customerId != 0
+  final int consumedWithOrderId;
 
   VendorCouponDoc({
     required this.id,
@@ -32,6 +34,7 @@ class VendorCouponDoc {
     required this.endAt,
     required this.discount,
     required this.modifiedOn,
+    required this.consumedWithOrderId,
   });
 
   VendorCouponDoc copyWith({
@@ -44,6 +47,7 @@ class VendorCouponDoc {
     int? endAt,
     int? discount,
     int? modifiedOn,
+    int? consumedWithOrderId,
   }) {
     return VendorCouponDoc(
       id: id ?? this.id,
@@ -55,6 +59,7 @@ class VendorCouponDoc {
       endAt: endAt ?? this.endAt,
       discount: discount ?? this.discount,
       modifiedOn: modifiedOn ?? this.modifiedOn,
+      consumedWithOrderId: consumedWithOrderId ?? this.consumedWithOrderId,
     );
   }
 
@@ -69,6 +74,7 @@ class VendorCouponDoc {
       'endAt': endAt,
       'discount': discount,
       'modifiedOn': modifiedOn,
+      'consumedWithOrderId': consumedWithOrderId,
     };
   }
 
@@ -83,6 +89,7 @@ class VendorCouponDoc {
       endAt: map['endAt'] as int,
       discount: map['discount'] as int,
       modifiedOn: map['modifiedOn'] as int,
+      consumedWithOrderId: map['consumedWithOrderId'] as int,
     );
   }
 
@@ -93,7 +100,7 @@ class VendorCouponDoc {
 
   @override
   String toString() {
-    return 'VendorCouponDoc(id: $id, img: $img, customerId: $customerId, itemId: $itemId, minGrossPrice: $minGrossPrice, startAt: $startAt, endAt: $endAt, discount: $discount, modifiedOn: $modifiedOn)';
+    return 'VendorCouponDoc(id: $id, img: $img, customerId: $customerId, itemId: $itemId, minGrossPrice: $minGrossPrice, startAt: $startAt, endAt: $endAt, discount: $discount, modifiedOn: $modifiedOn, consumedWithOrderId: $consumedWithOrderId)';
   }
 
   @override
@@ -108,7 +115,8 @@ class VendorCouponDoc {
         other.startAt == startAt &&
         other.endAt == endAt &&
         other.discount == discount &&
-        other.modifiedOn == modifiedOn;
+        other.modifiedOn == modifiedOn &&
+        other.consumedWithOrderId == consumedWithOrderId;
   }
 
   @override
@@ -121,6 +129,7 @@ class VendorCouponDoc {
         startAt.hashCode ^
         endAt.hashCode ^
         discount.hashCode ^
-        modifiedOn.hashCode;
+        modifiedOn.hashCode ^
+        consumedWithOrderId.hashCode;
   }
 }
