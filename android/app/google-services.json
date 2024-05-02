@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1065959458599",
+    "project_id": "petbhore",
+    "storage_bucket": "petbhore.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1065959458599:android:ddd29226d8249dc2760b02",
+        "android_client_info": {
+          "package_name": "com.putonics.prime.petbhore"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAlEeJrAATnx3s7oxwdDvRGtZeyFrsXuQE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

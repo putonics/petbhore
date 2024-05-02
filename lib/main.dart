@@ -23,8 +23,14 @@ import 'package:petbhore/screens/profile_screen.dart';
 import 'package:petbhore/screens/sent_otp_screen.dart';
 import 'package:petbhore/screens/sign_up_screen.dart';
 import 'package:petbhore/screens/splash_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const ProviderScope(child: MainApp()));
 }
 
