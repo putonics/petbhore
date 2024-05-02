@@ -28,9 +28,7 @@ import 'firebase_options.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const ProviderScope(child: MainApp()));
 }
 
@@ -40,14 +38,14 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Petbhore',
       theme: ThemeData(
         fontFamily: "Metropolis",
         primarySwatch: Colors.red,
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all(
-              AppColor.orange,
+              AppColor.themeColor,
             ),
             shape: MaterialStateProperty.all(
               const StadiumBorder(),
@@ -58,7 +56,7 @@ class MainApp extends StatelessWidget {
         textButtonTheme: TextButtonThemeData(
           style: ButtonStyle(
             foregroundColor: MaterialStateProperty.all(
-              AppColor.orange,
+              AppColor.themeColor,
             ),
           ),
         ),

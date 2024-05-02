@@ -55,7 +55,7 @@ class RecentItemCard extends StatelessWidget {
                         child: Text(
                           ".",
                           style: TextStyle(
-                            color: AppColor.orange,
+                            color: AppColor.themeColor,
                             fontWeight: FontWeight.w900,
                           ),
                         ),
@@ -78,7 +78,7 @@ class RecentItemCard extends StatelessWidget {
                       Text(
                         "${data.rating}",
                         style: const TextStyle(
-                          color: AppColor.orange,
+                          color: AppColor.themeColor,
                         ),
                       ),
                       const SizedBox(width: 10),

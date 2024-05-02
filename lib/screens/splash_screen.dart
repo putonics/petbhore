@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:petbhore/data/images.dart';
 import 'package:petbhore/screens/landing_screen.dart';
@@ -15,6 +16,13 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
+    FirebaseAuth.instance.authStateChanges().listen((User? user) {
+      if (user == null) {
+        debugPrint('User is currently signed out!');
+      } else {
+        debugPrint('User is signed in!');
+      }
+    });
   }
 
   @override
@@ -39,7 +47,11 @@ class _SplashScreenState extends State<SplashScreen> {
             ),
             Align(
               alignment: Alignment.center,
-              child: Image.asset(AppImage.logo),
+              child: Image.asset(
+                AppImage.logo,
+                width: 200,
+                height: 200,
+              ),
             ),
           ],
         ),

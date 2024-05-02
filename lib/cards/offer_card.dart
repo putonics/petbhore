@@ -48,7 +48,7 @@ class OfferCard extends StatelessWidget {
                 const Text(
                   "4.9",
                   style: TextStyle(
-                    color: AppColor.orange,
+                    color: AppColor.themeColor,
                   ),
                 ),
                 const SizedBox(
@@ -63,7 +63,8 @@ class OfferCard extends StatelessWidget {
                   child: Text(
                     ".",
                     style: TextStyle(
-                        color: AppColor.orange, fontWeight: FontWeight.bold),
+                        color: AppColor.themeColor,
+                        fontWeight: FontWeight.bold),
                   ),
                 ),
                 const Text(" Western Food"),

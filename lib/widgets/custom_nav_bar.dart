@@ -72,7 +72,7 @@ class CustomNavBar extends StatelessWidget {
                                 ),
                           menu
                               ? const Text("Menu",
-                                  style: TextStyle(color: AppColor.orange))
+                                  style: TextStyle(color: AppColor.themeColor))
                               : const Text("Menu"),
                         ],
                       ),
@@ -97,7 +97,7 @@ class CustomNavBar extends StatelessWidget {
                                 ),
                           offer
                               ? const Text("Offers",
-                                  style: TextStyle(color: AppColor.orange))
+                                  style: TextStyle(color: AppColor.themeColor))
                               : const Text("Offers"),
                         ],
                       ),
@@ -125,7 +125,7 @@ class CustomNavBar extends StatelessWidget {
                                 ),
                           profile
                               ? const Text("Profile",
-                                  style: TextStyle(color: AppColor.orange))
+                                  style: TextStyle(color: AppColor.themeColor))
                               : const Text("Profile"),
                         ],
                       ),
@@ -150,7 +150,7 @@ class CustomNavBar extends StatelessWidget {
                                 ),
                           more
                               ? const Text("Profile",
-                                  style: TextStyle(color: AppColor.orange))
+                                  style: TextStyle(color: AppColor.themeColor))
                               : const Text("More"),
                         ],
                       ),
@@ -167,7 +167,8 @@ class CustomNavBar extends StatelessWidget {
               width: 70,
               child: FloatingActionButton(
                 elevation: 0,
-                backgroundColor: home ? AppColor.orange : AppColor.placeholder,
+                backgroundColor:
+                    home ? AppColor.themeColor : AppColor.placeholder,
                 onPressed: () {
                   if (!home) {
                     Navigator.of(context)

@@ -64,7 +64,7 @@ class SendOTPScreen extends StatelessWidget {
                 Text(
                   "Click Here",
                   style: TextStyle(
-                    color: AppColor.orange,
+                    color: AppColor.themeColor,
                     fontWeight: FontWeight.bold,
                   ),
                 )

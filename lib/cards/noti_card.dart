@@ -30,7 +30,7 @@ class NotiCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const CircleAvatar(
-            backgroundColor: AppColor.orange,
+            backgroundColor: AppColor.themeColor,
             radius: 5,
           ),
           const SizedBox(

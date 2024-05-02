@@ -11,7 +11,7 @@ class AboutCard extends StatelessWidget {
       children: [
         CircleAvatar(
           radius: 5,
-          backgroundColor: AppColor.orange,
+          backgroundColor: AppColor.themeColor,
         ),
         SizedBox(
           width: 10,

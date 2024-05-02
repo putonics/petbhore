@@ -98,7 +98,7 @@ class PaymentScreen extends StatelessWidget {
                             ),
                             Icon(
                               Icons.check,
-                              color: AppColor.orange,
+                              color: AppColor.themeColor,
                             )
                           ],
                         ),
@@ -122,14 +122,14 @@ class PaymentScreen extends StatelessWidget {
                               style: ButtonStyle(
                                   side: MaterialStateProperty.all(
                                     const BorderSide(
-                                      color: AppColor.orange,
+                                      color: AppColor.themeColor,
                                     ),
                                   ),
                                   shape: MaterialStateProperty.all(
                                     const StadiumBorder(),
                                   ),
                                   foregroundColor: MaterialStateProperty.all(
-                                      AppColor.orange)),
+                                      AppColor.themeColor)),
                               onPressed: () {},
                               child: const Text("Delete Card"),
                             )

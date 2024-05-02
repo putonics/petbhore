@@ -59,7 +59,7 @@ class MenuScreen extends StatelessWidget {
                                   bottomRight: Radius.circular(30),
                                 ),
                               ),
-                              color: AppColor.orange),
+                              color: AppColor.themeColor),
                         ),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 20.0),

@@ -129,7 +129,7 @@ class LoginScreen extends StatelessWidget {
                       Text(
                         "Sign Up",
                         style: TextStyle(
-                          color: AppColor.orange,
+                          color: AppColor.themeColor,
                           fontWeight: FontWeight.bold,
                         ),
                       )

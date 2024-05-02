@@ -82,7 +82,7 @@ class MyOrderScreen extends StatelessWidget {
                                 const Text(
                                   "4.9",
                                   style: TextStyle(
-                                    color: AppColor.orange,
+                                    color: AppColor.themeColor,
                                   ),
                                 ),
                                 const Text(" (124 ratings)"),
@@ -98,7 +98,7 @@ class MyOrderScreen extends StatelessWidget {
                                   child: Text(
                                     ".",
                                     style: TextStyle(
-                                      color: AppColor.orange,
+                                      color: AppColor.themeColor,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
@@ -191,12 +191,12 @@ class MyOrderScreen extends StatelessWidget {
                                   children: [
                                     Icon(
                                       Icons.add,
-                                      color: AppColor.orange,
+                                      color: AppColor.themeColor,
                                     ),
                                     Text(
                                       "Add Notes",
                                       style: TextStyle(
-                                        color: AppColor.orange,
+                                        color: AppColor.themeColor,
                                       ),
                                     )
                                   ],
@@ -219,7 +219,7 @@ class MyOrderScreen extends StatelessWidget {
                             "\$68",
                             style:
                                 Helper.getTheme(context).displaySmall?.copyWith(
-                                      color: AppColor.orange,
+                                      color: AppColor.themeColor,
                                     ),
                           )
                         ],
@@ -239,7 +239,7 @@ class MyOrderScreen extends StatelessWidget {
                             "\$2",
                             style:
                                 Helper.getTheme(context).displaySmall?.copyWith(
-                                      color: AppColor.orange,
+                                      color: AppColor.themeColor,
                                     ),
                           )
                         ],
@@ -266,7 +266,7 @@ class MyOrderScreen extends StatelessWidget {
                             "\$70",
                             style:
                                 Helper.getTheme(context).displaySmall?.copyWith(
-                                      color: AppColor.orange,
+                                      color: AppColor.themeColor,
                                       fontSize: 22,
                                     ),
                           )

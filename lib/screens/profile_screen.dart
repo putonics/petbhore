@@ -77,7 +77,7 @@ class ProfileScreen extends StatelessWidget {
                           ),
                           const Text(
                             "Edit Profile",
-                            style: TextStyle(color: AppColor.orange),
+                            style: TextStyle(color: AppColor.themeColor),
                           ),
                         ],
                       ),

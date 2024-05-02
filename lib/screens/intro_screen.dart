@@ -74,24 +74,27 @@ class _IntroScreenState extends State<IntroScreen> {
                   children: [
                     CircleAvatar(
                       radius: 5,
-                      backgroundColor:
-                          count == 0 ? AppColor.orange : AppColor.placeholder,
+                      backgroundColor: count == 0
+                          ? AppColor.themeColor
+                          : AppColor.placeholder,
                     ),
                     const SizedBox(
                       width: 5,
                     ),
                     CircleAvatar(
                       radius: 5,
-                      backgroundColor:
-                          count == 1 ? AppColor.orange : AppColor.placeholder,
+                      backgroundColor: count == 1
+                          ? AppColor.themeColor
+                          : AppColor.placeholder,
                     ),
                     const SizedBox(
                       width: 5,
                     ),
                     CircleAvatar(
                       radius: 5,
-                      backgroundColor:
-                          count == 2 ? AppColor.orange : AppColor.placeholder,
+                      backgroundColor: count == 2
+                          ? AppColor.themeColor
+                          : AppColor.placeholder,
                     )
                   ],
                 ),

@@ -168,7 +168,8 @@ class IndividualItem extends StatelessWidget {
                                                   const Text(
                                                     "4 Star Ratings",
                                                     style: TextStyle(
-                                                      color: AppColor.orange,
+                                                      color:
+                                                          AppColor.themeColor,
                                                       fontSize: 12,
                                                     ),
                                                   )
@@ -375,7 +376,7 @@ class IndividualItem extends StatelessWidget {
                                                         shape: StadiumBorder(
                                                           side: BorderSide(
                                                               color: AppColor
-                                                                  .orange),
+                                                                  .themeColor),
                                                         ),
                                                       ),
                                                       child: const Row(
@@ -387,7 +388,7 @@ class IndividualItem extends StatelessWidget {
                                                             "2",
                                                             style: TextStyle(
                                                               color: AppColor
-                                                                  .orange,
+                                                                  .themeColor,
                                                             ),
                                                           ),
                                                         ],
@@ -419,7 +420,7 @@ class IndividualItem extends StatelessWidget {
                                                 width: 120,
                                                 decoration:
                                                     const ShapeDecoration(
-                                                  color: AppColor.orange,
+                                                  color: AppColor.themeColor,
                                                   shape: RoundedRectangleBorder(
                                                     borderRadius:
                                                         BorderRadius.only(

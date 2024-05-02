@@ -78,7 +78,7 @@ class ChangeAddressScreen extends StatelessWidget {
                         ),
                         width: Helper.getScreenWidth(context) * 0.45,
                         decoration: const ShapeDecoration(
-                          color: AppColor.orange,
+                          color: AppColor.themeColor,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(10),
@@ -118,7 +118,7 @@ class ChangeAddressScreen extends StatelessWidget {
                         child: Container(
                           width: 30,
                           height: 30,
-                          color: AppColor.orange,
+                          color: AppColor.themeColor,
                         ),
                       ),
                     ),
@@ -140,11 +140,11 @@ class ChangeAddressScreen extends StatelessWidget {
                         width: 50,
                         decoration: ShapeDecoration(
                           shape: const CircleBorder(),
-                          color: AppColor.orange.withOpacity(0.2),
+                          color: AppColor.themeColor.withOpacity(0.2),
                         ),
                         child: const Icon(
                           Icons.star_rounded,
-                          color: AppColor.orange,
+                          color: AppColor.themeColor,
                           size: 30,
                         ),
                       ),

@@ -290,7 +290,7 @@ class CheckoutScreen extends StatelessWidget {
                         height: 15,
                         decoration: const ShapeDecoration(
                           shape: CircleBorder(
-                            side: BorderSide(color: AppColor.orange),
+                            side: BorderSide(color: AppColor.themeColor),
                           ),
                         ),
                       )
@@ -326,7 +326,7 @@ class CheckoutScreen extends StatelessWidget {
                         height: 15,
                         decoration: const ShapeDecoration(
                           shape: CircleBorder(
-                            side: BorderSide(color: AppColor.orange),
+                            side: BorderSide(color: AppColor.themeColor),
                           ),
                         ),
                       )
@@ -363,7 +363,7 @@ class CheckoutScreen extends StatelessWidget {
                         height: 15,
                         decoration: const ShapeDecoration(
                           shape: CircleBorder(
-                            side: BorderSide(color: AppColor.orange),
+                            side: BorderSide(color: AppColor.themeColor),
                           ),
                         ),
                       )
