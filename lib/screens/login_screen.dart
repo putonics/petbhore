@@ -16,7 +16,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final _focusNode = FocusNode();
+  final _focusNodeMobile = FocusNode();
+  final _focusNodeOtp = FocusNode();
   String _mob = "";
   String get mobile => _mob;
   set mobile(String text) => setState(() {
@@ -26,7 +27,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   void dispose() {
-    _focusNode.dispose();
+    _focusNodeMobile.dispose();
+    _focusNodeOtp.dispose();
     super.dispose();
   }
 
@@ -62,12 +64,10 @@ class _LoginScreenState extends State<LoginScreen> {
       ///ANDROID ONLY! Time for autoretrieval of OTP from SMS.
       timeout: const Duration(seconds: maxARTS),
 
-      /// ANDROID ONLY! which support automatic SMS code resolution, this handler will be called
-      /// if the device has not automatically resolved an SMS message within a certain timeframe.
-      /// Once the timeframe has passed, the device will no longer attempt to resolve any incoming messages.
+      /// ANDROID ONLY! which support automatic SMS code resolution.
       codeAutoRetrievalTimeout: (String verificationId) {},
 
-      ///When Firebase sends an SMS code to the device, this handler is triggered with a verificationId and resendToken
+      ///Manual verification of SMS code; and allow resend again.
       codeSent: (String verificationId, int? resendToken) async {
         // Update the UI - wait for the user to enter the SMS code
         String smsCode = 'xxxx';
@@ -78,15 +78,12 @@ class _LoginScreenState extends State<LoginScreen> {
         await auth.signInWithCredential(credential);
       },
 
-      /// ANDROID ONLY! will automatically verify the SMS code without requiring the user to manually input the code.
-      /// If this event occurs, a PhoneAuthCredential is automatically provided which can be used to sign-in with or link the user's phone number.
-      /// Sign the user in (or link) with the auto-generated credential
+      /// ANDROID ONLY! will automatically verify the SMS code
       verificationCompleted: (PhoneAuthCredential credential) async {
         await auth.signInWithCredential(credential);
       },
 
-      /// If Firebase returns an error, for example for an incorrect phone number or if the SMS quota for the project has exceeded,
-      /// a FirebaseAuthException will be sent to this handler.
+      /// Incorrect phone number or if the SMS quota for the project has exceeded etc
       verificationFailed: (FirebaseAuthException e) {
         remainingARTS = maxARTS; //Stop timer
         if (e.code == 'invalid-phone-number') {
@@ -98,7 +95,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    _focusNode.requestFocus();
+    _focusNodeMobile.requestFocus();
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
@@ -137,20 +134,33 @@ class _LoginScreenState extends State<LoginScreen> {
                   style: Helper.getTheme(context).titleLarge,
                 ),
                 const SizedBox(height: 40),
-                const Text('আপনার নিজের MOBILE NUMBER টি দিন'),
+                Text(!isOtpSent
+                    ? 'আপনার নিজের MOBILE NUMBER টি দিন'
+                    : 'আপনার MOBILE এ যে OTP টি এসেছে সেটি দিন'),
                 const SizedBox(height: 20),
                 CustomTextInput(
-                  hintText: remainingARTS == maxARTS
-                      ? "10 digit mobile number"
-                      : "6 digit OTP",
+                  enabled: !isOtpSent,
+                  hintText: "10 digit mobile number",
                   maxLength: 10,
                   keyboardType: TextInputType.phone,
-                  focusNode: _focusNode,
+                  focusNode: _focusNodeMobile,
                   onChanged: (text) {
                     mobile = text;
                   },
                 ),
-                const SizedBox(height: 40),
+                const SizedBox(height: 20),
+                isOtpSent
+                    ? CustomTextInput(
+                        enabled: isOtpSent,
+                        hintText: "6 digit number",
+                        maxLength: 6,
+                        keyboardType: TextInputType.phone,
+                        focusNode: _focusNodeOtp,
+                        onChanged: (text) {
+                          mobile = text;
+                        },
+                      )
+                    : const SizedBox(),
                 SizedBox(
                   height: 50,
                   width: double.infinity,
@@ -163,7 +173,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             //     .pushReplacementNamed(SendOTPScreen.routeName);
                           },
                     child: Text(
-                      "Send OTP",
+                      !isOtpSent ? "Send OTP" : "Verify",
                       style: TextStyle(
                         color: isValidMobile ? Colors.white : Colors.grey,
                       ),

@@ -10,6 +10,7 @@ class CustomTextInput extends StatelessWidget {
     this.focusNode,
     this.onChanged,
     this.maxLength,
+    this.enabled = true,
   });
 
   final String hintText;
@@ -18,6 +19,7 @@ class CustomTextInput extends StatelessWidget {
   final FocusNode? focusNode;
   final void Function(String text)? onChanged;
   final int? maxLength;
+  final bool enabled;
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +31,7 @@ class CustomTextInput extends StatelessWidget {
         shape: StadiumBorder(),
       ),
       child: TextField(
+        enabled: enabled,
         maxLength: maxLength,
         canRequestFocus: true,
         focusNode: focusNode,

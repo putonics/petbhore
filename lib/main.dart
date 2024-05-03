@@ -18,15 +18,15 @@ import 'package:petbhore/screens/notification_screen.dart';
 import 'package:petbhore/screens/offer_screen.dart';
 import 'package:petbhore/screens/payment_screen.dart';
 import 'package:petbhore/screens/profile_screen.dart';
-import 'package:petbhore/screens/sent_otp_screen.dart';
 import 'package:petbhore/screens/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:toastification/toastification.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  runApp(const ProviderScope(child: MainApp()));
+  runApp(const ProviderScope(child: ToastificationWrapper(child: MainApp())));
 }
 
 class MainApp extends StatelessWidget {
@@ -111,7 +111,6 @@ class MainApp extends StatelessWidget {
               ? {
                   LandingScreen.routeName: (context) => const LandingScreen(),
                   LoginScreen.routeName: (context) => const LoginScreen(),
-                  SendOTPScreen.routeName: (context) => const SendOTPScreen(),
                 }
               : {
                   HomeScreen.routeName: (context) => const HomeScreen(),
