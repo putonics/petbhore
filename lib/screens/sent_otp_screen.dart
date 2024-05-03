@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:petbhore/data/colors.dart';
 import 'package:petbhore/utils/helper.dart';
-import 'new_pw_screen.dart';
 
 class SendOTPScreen extends StatelessWidget {
   static const routeName = "/sendOTP";
@@ -50,8 +49,8 @@ class SendOTPScreen extends StatelessWidget {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.of(context)
-                      .pushReplacementNamed(NewPwScreen.routeName);
+                  // Navigator.of(context)
+                  //     .pushReplacementNamed(NewPwScreen.routeName);
                 },
                 child: const Text("Next"),
               ),

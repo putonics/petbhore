@@ -1,12 +1,12 @@
 import 'dart:async';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:petbhore/data/images.dart';
-import 'package:petbhore/screens/landing_screen.dart';
 import 'package:petbhore/utils/helper.dart';
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
+  const SplashScreen({super.key, required this.nextScreenRouteName});
+
+  final String nextScreenRouteName;
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();
@@ -16,19 +16,12 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    FirebaseAuth.instance.authStateChanges().listen((User? user) {
-      if (user == null) {
-        debugPrint('User is currently signed out!');
-      } else {
-        debugPrint('User is signed in!');
-      }
-    });
   }
 
   @override
   Widget build(BuildContext context) {
     Timer(const Duration(seconds: 2), () {
-      Navigator.of(context).pushReplacementNamed(LandingScreen.routeName);
+      Navigator.of(context).pushReplacementNamed(widget.nextScreenRouteName);
     });
 
     return Scaffold(

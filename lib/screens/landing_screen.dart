@@ -38,18 +38,12 @@ class LandingScreen extends StatelessWidget {
                 Align(
                   alignment: Alignment.center,
                   child: SizedBox(
-                    height: 130,
-                    child: Column(
-                      children: [
-                        Text(
-                          "পেটভরে",
-                          style: TextStyle(fontSize: 60),
-                        ),
-                        Text(
-                          "Home Delivery",
-                          style: TextStyle(fontSize: 20),
-                        ),
-                      ],
+                    height: 200,
+                    child: Text(
+                      "পেটভরে",
+                      style: TextStyle(
+                          fontSize: 150,
+                          fontFamily: "FN Mahin Sayeedi Unicode"),
                     ),
                   ),
                 )
@@ -72,15 +66,21 @@ class LandingScreen extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 40),
               child: Column(
                 children: [
-                  const Flexible(
-                    child: Text(
-                      "Discover the best foods from over 1,000 restaurants and fast delivery to your doorstep",
-                      textAlign: TextAlign.center,
-                    ),
+                  const Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "অফিসে ও দোকানে, ঘরের স্বাদে",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: 21),
+                      ),
+                      Text(
+                        "Eat Well, Work Well, Delicious Bengali Cuisine, Delivered with Care",
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
                   ),
-                  const Spacer(
-                    flex: 2,
-                  ),
+                  const Spacer(flex: 1),
                   SizedBox(
                     width: double.infinity,
                     height: 50,
@@ -89,33 +89,27 @@ class LandingScreen extends StatelessWidget {
                         Navigator.of(context)
                             .pushReplacementNamed(LoginScreen.routeName);
                       },
-                      child: const Text(
-                        "Login",
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  SizedBox(
-                    width: double.infinity,
-                    height: 50,
-                    child: ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all(Colors.white),
-                        foregroundColor:
-                            MaterialStateProperty.all(AppColor.themeColor),
-                        shape: MaterialStateProperty.all(
-                          const StadiumBorder(
-                            side: BorderSide(
-                                color: AppColor.themeColor, width: 1.5),
+                      child: const Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "এবার",
+                            style: TextStyle(color: Colors.grey),
                           ),
-                        ),
+                          Text(
+                            "  login  ",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                          Text(
+                            "করুন",
+                            style: TextStyle(color: Colors.grey),
+                          ),
+                        ],
                       ),
-                      onPressed: () {},
-                      child: const Text("Create an Account"),
                     ),
                   ),
                   const Spacer(),
