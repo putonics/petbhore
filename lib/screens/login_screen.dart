@@ -1,10 +1,19 @@
 import 'dart:async';
-import 'dart:io';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:petbhore/utils/helper.dart';
 import 'package:petbhore/widgets/custom_text_input.dart';
+
+enum LoginStates {
+  invalidMobile,
+  validMobile,
+  sendingOtp,
+  sendingOtpError,
+  otpSent,
+  verifyingOtp,
+  verifyingOtpError,
+  otpVerified,
+}
 
 class LoginScreen extends StatefulWidget {
   static const routeName = "/loginScreen";
@@ -24,6 +33,12 @@ class _LoginScreenState extends State<LoginScreen> {
         _mob = text;
       });
   bool get isValidMobile => _mob.length == 10 && int.tryParse(_mob) != null;
+  String _otp = "";
+  String get otp => _otp;
+  set otp(String text) => setState(() {
+        _otp = text;
+      });
+  bool get isValidOtp => _otp.length == 6 && int.tryParse(_otp) != null;
 
   @override
   void dispose() {
@@ -32,62 +47,101 @@ class _LoginScreenState extends State<LoginScreen> {
     super.dispose();
   }
 
-  /// ARTS: Auto Resolution Time in Seconds
+  final auth = FirebaseAuth.instance;
+
+  /// ARTS: Auto Retrieval Time in Seconds
   static const maxARTS = 60;
   int _remainingARTS = maxARTS;
   int get remainingARTS => _remainingARTS;
   set remainingARTS(int val) => setState(() {
         _remainingARTS = val;
       });
-  bool get isOtpSent => remainingARTS < maxARTS;
+
+  String _otpVerificationId = '';
+  int? _otpResendToken;
+  bool get isOtpSent => _otpVerificationId.isNotEmpty;
+  void setCode(String verificationId, int? resendToken) => setState(() {
+        _otpVerificationId = verificationId;
+        _otpResendToken = resendToken;
+      });
+  void manualVerifyOtp() async {
+    await auth.signInWithCredential(PhoneAuthProvider.credential(
+      verificationId: _otpVerificationId,
+      smsCode: otp,
+    ));
+  }
+
+  bool _isSendClicked = false;
+  set isSendClicked(bool val) => setState(() {
+        _isSendClicked = val;
+      });
 
   void sendOtp() async {
+    if (_isSendClicked || !isValidMobile) return;
+    isSendClicked = true;
+
     /// Starting the timer for disabling the OTP input till the end of ARTS
-    if (Platform.isAndroid) {
-      --remainingARTS;
-      Timer.periodic(const Duration(seconds: 1), (timer) {
-        if (remainingARTS == 0 || remainingARTS == maxARTS) {
-          timer.cancel();
-        } else {
-          --remainingARTS;
-        }
-      });
-    } else {
-      remainingARTS = 0;
-    }
+    debugPrint("sendOtp()");
 
     /// Try sending OTP
-    final auth = FirebaseAuth.instance;
     await auth.verifyPhoneNumber(
-      phoneNumber: mobile,
+      phoneNumber: "+91$mobile",
 
       ///ANDROID ONLY! Time for autoretrieval of OTP from SMS.
       timeout: const Duration(seconds: maxARTS),
 
       /// ANDROID ONLY! which support automatic SMS code resolution.
-      codeAutoRetrievalTimeout: (String verificationId) {},
+      codeAutoRetrievalTimeout: (String verificationId) {
+        debugPrint('codeAutoRetrievalTimeout()');
+      },
 
-      ///Manual verification of SMS code; and allow resend again.
+      ///This event is ocurred after OTP sent by the server
       codeSent: (String verificationId, int? resendToken) async {
-        // Update the UI - wait for the user to enter the SMS code
-        String smsCode = 'xxxx';
-        // Create a PhoneAuthCredential with the code
-        PhoneAuthCredential credential = PhoneAuthProvider.credential(
-            verificationId: verificationId, smsCode: smsCode);
-        // Sign the user in (or link) with the credential
-        await auth.signInWithCredential(credential);
+        //Checking if Android device, then start ARTS timer
+        if (resendToken != null) {
+          --remainingARTS;
+          // Timer.periodic(const Duration(seconds: 1), (timer) {
+          //   if (remainingARTS == 0 || remainingARTS == maxARTS) {
+          //     timer.cancel();
+          //   } else {
+          //     --remainingARTS;
+          //   }
+          // });
+        } else {
+          remainingARTS = 0;
+        }
+        setCode(verificationId, resendToken);
       },
 
       /// ANDROID ONLY! will automatically verify the SMS code
       verificationCompleted: (PhoneAuthCredential credential) async {
+        debugPrint('verificationCompleted()');
         await auth.signInWithCredential(credential);
       },
 
       /// Incorrect phone number or if the SMS quota for the project has exceeded etc
       verificationFailed: (FirebaseAuthException e) {
+        isSendClicked = false;
         remainingARTS = maxARTS; //Stop timer
-        if (e.code == 'invalid-phone-number') {
-          // print('The provided phone number is not valid.');
+        switch (e.code) {
+          case "invalid-phone-number":
+            debugPrint("Please enter a valid phone number.");
+            break;
+          case "quota-exceeded":
+            debugPrint("Too many verification attempts. Please try later.");
+            break;
+          case "network-error":
+            debugPrint(
+                "Network error. Please check your connection and try again.");
+          case "invalid-verification-code":
+            debugPrint("The entered verification code is incorrect.");
+            break;
+          case "phone-already-in-use":
+            debugPrint(
+                "The phone number is already linked to another Firebase user.");
+            break;
+          default:
+            debugPrint("Verification failed. Please try again.");
         }
       },
     );
@@ -157,25 +211,35 @@ class _LoginScreenState extends State<LoginScreen> {
                         keyboardType: TextInputType.phone,
                         focusNode: _focusNodeOtp,
                         onChanged: (text) {
-                          mobile = text;
+                          otp = text;
                         },
+                      )
+                    : const SizedBox(),
+                isOtpSent ? const SizedBox(height: 20) : const SizedBox(),
+                isOtpSent
+                    ? Text(
+                        "Reading SMS in $remainingARTS sec",
+                        style: Helper.getTheme(context).titleSmall,
                       )
                     : const SizedBox(),
                 SizedBox(
                   height: 50,
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: !isValidMobile
-                        ? null
-                        : () {
-                            debugPrint(mobile);
-                            // Navigator.of(context)
-                            //     .pushReplacementNamed(SendOTPScreen.routeName);
-                          },
+                    onPressed: (!isOtpSent
+                        ? !isValidMobile
+                            ? null
+                            : sendOtp
+                        : !isValidOtp
+                            ? null
+                            : manualVerifyOtp),
                     child: Text(
                       !isOtpSent ? "Send OTP" : "Verify",
                       style: TextStyle(
-                        color: isValidMobile ? Colors.white : Colors.grey,
+                        color: (!isOtpSent && isValidMobile) ||
+                                (isOtpSent && isValidOtp)
+                            ? Colors.white
+                            : Colors.grey,
                       ),
                     ),
                   ),

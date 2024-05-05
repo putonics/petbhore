@@ -1,29 +1,12 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:petbhore/data/images.dart';
 import 'package:petbhore/utils/helper.dart';
 
-class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key, required this.nextScreenRouteName});
-
-  final String nextScreenRouteName;
-
-  @override
-  State<SplashScreen> createState() => _SplashScreenState();
-}
-
-class _SplashScreenState extends State<SplashScreen> {
-  @override
-  void initState() {
-    super.initState();
-  }
+class SplashScreen extends StatelessWidget {
+  const SplashScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    Timer(const Duration(seconds: 2), () {
-      Navigator.of(context).pushReplacementNamed(widget.nextScreenRouteName);
-    });
-
     return Scaffold(
       body: SizedBox(
         width: Helper.getScreenWidth(context),

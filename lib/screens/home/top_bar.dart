@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:petbhore/data/images.dart';
 import 'package:petbhore/utils/helper.dart';
 
@@ -18,7 +20,12 @@ class TopBar extends StatelessWidget {
             "Good morning Akila!",
             style: Helper.getTheme(context).headlineSmall,
           ),
-          Image.asset(IconImage.cart)
+          GestureDetector(
+            child: Image.asset(IconImage.cart),
+            onTap: () {
+              FirebaseAuth.instance.signOut();
+            },
+          )
         ],
       ),
     );
