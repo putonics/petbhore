@@ -55,25 +55,18 @@ class CustomNavBar extends StatelessWidget {
                     GestureDetector(
                       onTap: () {
                         if (!menu) {
-                          Navigator.of(context)
-                              .pushReplacementNamed(MenuScreen.routeName);
+                          Navigator.of(context).pushNamed(MenuScreen.routeName);
                         }
                       },
-                      child: Column(
+                      child: const Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          menu
-                              ? Image.asset(
-                                  Helper.getAssetName(
-                                      "more_filled.png", "virtual"),
-                                )
-                              : Image.asset(
-                                  Helper.getAssetName("more.png", "virtual"),
-                                ),
-                          menu
-                              ? const Text("Menu",
-                                  style: TextStyle(color: AppColor.themeColor))
-                              : const Text("Menu"),
+                          Icon(
+                            Icons.emoji_food_beverage,
+                            color: Color.fromARGB(255, 143, 139, 140),
+                            size: 24.0,
+                          ),
+                          Text("Orders"),
                         ],
                       ),
                     ),
@@ -81,7 +74,7 @@ class CustomNavBar extends StatelessWidget {
                       onTap: () {
                         if (!offer) {
                           Navigator.of(context)
-                              .pushReplacementNamed(OfferScreen.routeName);
+                              .pushNamed(OfferScreen.routeName);
                         }
                       },
                       child: Column(
@@ -109,7 +102,7 @@ class CustomNavBar extends StatelessWidget {
                       onTap: () {
                         if (!profile) {
                           Navigator.of(context)
-                              .pushReplacementNamed(ProfileScreen.routeName);
+                              .pushNamed(ProfileScreen.routeName);
                         }
                       },
                       child: Column(
@@ -133,8 +126,7 @@ class CustomNavBar extends StatelessWidget {
                     GestureDetector(
                       onTap: () {
                         if (!more) {
-                          Navigator.of(context)
-                              .pushReplacementNamed(MoreScreen.routeName);
+                          Navigator.of(context).pushNamed(MoreScreen.routeName);
                         }
                       },
                       child: Column(
@@ -143,15 +135,15 @@ class CustomNavBar extends StatelessWidget {
                           more
                               ? Image.asset(
                                   Helper.getAssetName(
-                                      "menu_filled.png", "virtual"),
+                                      "cart_filled.png", "virtual"),
                                 )
                               : Image.asset(
-                                  Helper.getAssetName("menu.png", "virtual"),
+                                  Helper.getAssetName("cart.png", "virtual"),
                                 ),
                           more
-                              ? const Text("Profile",
+                              ? const Text("Cart",
                                   style: TextStyle(color: AppColor.themeColor))
-                              : const Text("More"),
+                              : const Text("Cart"),
                         ],
                       ),
                     ),
@@ -161,24 +153,27 @@ class CustomNavBar extends StatelessWidget {
             ),
           ),
           Align(
-            alignment: Alignment.topCenter,
+            alignment: Alignment.center,
             child: SizedBox(
-              height: 70,
-              width: 70,
-              child: FloatingActionButton(
-                elevation: 0,
-                backgroundColor:
-                    home ? AppColor.themeColor : AppColor.placeholder,
-                onPressed: () {
-                  if (!home) {
-                    Navigator.of(context)
-                        .pushReplacementNamed(HomeScreen.routeName);
-                  }
-                },
-                child: Image.asset(
-                    Helper.getAssetName("home_white.png", "virtual")),
-              ),
-            ),
+                height: 70,
+                width: 70,
+                child: Padding(
+                  padding: const EdgeInsets.all(6.0),
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.of(context)
+                          .pushReplacementNamed(HomeScreen.routeName);
+                    },
+                    child: CircleAvatar(
+                      backgroundColor: Colors.black,
+                      child: Icon(
+                        Icons.food_bank,
+                        size: 40,
+                        color: Colors.amber,
+                      ),
+                    ),
+                  ),
+                )),
           )
         ],
       ),
