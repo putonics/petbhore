@@ -9,6 +9,7 @@ class CustomTextInput extends StatelessWidget {
     this.keyboardType,
     this.focusNode,
     this.onChanged,
+    this.onSubmitted,
     this.maxLength,
     this.enabled = true,
   });
@@ -18,6 +19,7 @@ class CustomTextInput extends StatelessWidget {
   final TextInputType? keyboardType;
   final FocusNode? focusNode;
   final void Function(String text)? onChanged;
+  final void Function(String text)? onSubmitted;
   final int? maxLength;
   final bool enabled;
 
@@ -37,6 +39,7 @@ class CustomTextInput extends StatelessWidget {
         focusNode: focusNode,
         keyboardType: keyboardType,
         onChanged: onChanged,
+        onSubmitted: onSubmitted,
         decoration: InputDecoration(
           border: InputBorder.none,
           hintText: hintText,

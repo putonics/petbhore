@@ -1,19 +1,35 @@
-import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:petbhore/utils/helper.dart';
 import 'package:petbhore/widgets/custom_text_input.dart';
 
-enum LoginStates {
-  invalidMobile,
-  validMobile,
+enum LoginState {
+  invalidMobileInput,
+  validMobileInput,
   sendingOtp,
   sendingOtpError,
   otpSent,
+  validOtpInput,
   verifyingOtp,
   verifyingOtpError,
   otpVerified,
+  duplicateUser,
+  unknownError,
 }
+
+const List<String> loginStates = [
+  "Give valid mobile number!",
+  "Send OTP to this number",
+  "Sending OTP!",
+  "Failed! Try with different number!",
+  "OTP received!",
+  "Verify now!",
+  "Verifying!",
+  "Invalid OTP!",
+  "Verification done!",
+  "Duplicate user login!",
+  "Verification Failed! Try again!"
+];
 
 class LoginScreen extends StatefulWidget {
   static const routeName = "/loginScreen";
@@ -25,20 +41,31 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  LoginState _loginState = LoginState.invalidMobileInput;
+  LoginState get loginState => _loginState;
+  set loginState(LoginState state) => setState(() {
+        _loginState = state;
+      });
+
   final _focusNodeMobile = FocusNode();
   final _focusNodeOtp = FocusNode();
   String _mob = "";
   String get mobile => _mob;
   set mobile(String text) => setState(() {
         _mob = text;
+        _loginState = text.length == 10 && int.tryParse(text) != null
+            ? LoginState.validMobileInput
+            : LoginState.invalidMobileInput;
       });
-  bool get isValidMobile => _mob.length == 10 && int.tryParse(_mob) != null;
+
   String _otp = "";
   String get otp => _otp;
   set otp(String text) => setState(() {
         _otp = text;
+        _loginState = text.length == 6 && int.tryParse(text) != null
+            ? LoginState.validOtpInput
+            : LoginState.otpSent;
       });
-  bool get isValidOtp => _otp.length == 6 && int.tryParse(_otp) != null;
 
   @override
   void dispose() {
@@ -50,98 +77,87 @@ class _LoginScreenState extends State<LoginScreen> {
   final auth = FirebaseAuth.instance;
 
   /// ARTS: Auto Retrieval Time in Seconds
-  static const maxARTS = 60;
-  int _remainingARTS = maxARTS;
-  int get remainingARTS => _remainingARTS;
-  set remainingARTS(int val) => setState(() {
-        _remainingARTS = val;
-      });
+  static const _maxARTS = 60;
+  bool _artsTimeout = false;
 
   String _otpVerificationId = '';
-  int? _otpResendToken;
   bool get isOtpSent => _otpVerificationId.isNotEmpty;
-  void setCode(String verificationId, int? resendToken) => setState(() {
-        _otpVerificationId = verificationId;
-        _otpResendToken = resendToken;
-      });
-  void manualVerifyOtp() async {
-    await auth.signInWithCredential(PhoneAuthProvider.credential(
+
+  void signIn(PhoneAuthCredential credential) async {
+    loginState = LoginState.verifyingOtp;
+    try {
+      await auth.signInWithCredential(credential);
+      loginState = LoginState.otpVerified;
+    } catch (e) {
+      loginState = LoginState.verifyingOtpError;
+    }
+  }
+
+  void manualVerifyOtp() {
+    if (loginState != LoginState.validOtpInput) return;
+    signIn(PhoneAuthProvider.credential(
       verificationId: _otpVerificationId,
       smsCode: otp,
     ));
   }
 
-  bool _isSendClicked = false;
-  set isSendClicked(bool val) => setState(() {
-        _isSendClicked = val;
-      });
-
   void sendOtp() async {
-    if (_isSendClicked || !isValidMobile) return;
-    isSendClicked = true;
+    if (loginState != LoginState.validMobileInput) return;
+    loginState = LoginState.sendingOtp;
 
-    /// Starting the timer for disabling the OTP input till the end of ARTS
-    debugPrint("sendOtp()");
-
-    /// Try sending OTP
     await auth.verifyPhoneNumber(
       phoneNumber: "+91$mobile",
 
       ///ANDROID ONLY! Time for autoretrieval of OTP from SMS.
-      timeout: const Duration(seconds: maxARTS),
+      timeout: const Duration(seconds: _maxARTS),
 
       /// ANDROID ONLY! which support automatic SMS code resolution.
       codeAutoRetrievalTimeout: (String verificationId) {
-        debugPrint('codeAutoRetrievalTimeout()');
+        setState(() {
+          _artsTimeout = true;
+        });
       },
 
       ///This event is ocurred after OTP sent by the server
-      codeSent: (String verificationId, int? resendToken) async {
-        //Checking if Android device, then start ARTS timer
-        if (resendToken != null) {
-          --remainingARTS;
-          // Timer.periodic(const Duration(seconds: 1), (timer) {
-          //   if (remainingARTS == 0 || remainingARTS == maxARTS) {
-          //     timer.cancel();
-          //   } else {
-          //     --remainingARTS;
-          //   }
-          // });
-        } else {
-          remainingARTS = 0;
-        }
-        setCode(verificationId, resendToken);
+      codeSent: (String verificationId, int? resendToken) {
+        setState(() {
+          _otpVerificationId = verificationId;
+          _loginState = LoginState.otpSent;
+        });
       },
 
       /// ANDROID ONLY! will automatically verify the SMS code
-      verificationCompleted: (PhoneAuthCredential credential) async {
-        debugPrint('verificationCompleted()');
-        await auth.signInWithCredential(credential);
-      },
+      verificationCompleted: signIn,
 
       /// Incorrect phone number or if the SMS quota for the project has exceeded etc
       verificationFailed: (FirebaseAuthException e) {
-        isSendClicked = false;
-        remainingARTS = maxARTS; //Stop timer
         switch (e.code) {
-          case "invalid-phone-number":
-            debugPrint("Please enter a valid phone number.");
-            break;
+          case 'operation-not-allowed':
+          case 'user-disabled':
+            debugPrint("Some problem occured!");
           case "quota-exceeded":
             debugPrint("Too many verification attempts. Please try later.");
-            break;
           case "network-error":
             debugPrint(
                 "Network error. Please check your connection and try again.");
+          case "invalid-phone-number":
+            debugPrint("Please enter a valid phone number.");
+            loginState = LoginState.sendingOtpError;
+            break;
+          case "invalid-verification-id":
           case "invalid-verification-code":
             debugPrint("The entered verification code is incorrect.");
+            loginState = LoginState.verifyingOtpError;
             break;
+          case 'account-exists-with-different-credential':
           case "phone-already-in-use":
             debugPrint(
                 "The phone number is already linked to another Firebase user.");
+            loginState = LoginState.duplicateUser;
             break;
           default:
             debugPrint("Verification failed. Please try again.");
+            loginState = LoginState.unknownError;
         }
       },
     );
@@ -149,7 +165,16 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    _focusNodeMobile.requestFocus();
+    if (isOtpSent && loginState.index < LoginState.verifyingOtp.index) {
+      _focusNodeOtp.requestFocus();
+    } else {
+      _focusNodeOtp.unfocus();
+    }
+    if (loginState.index < LoginState.sendingOtp.index) {
+      _focusNodeMobile.requestFocus();
+    } else {
+      _focusNodeMobile.unfocus();
+    }
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
@@ -201,6 +226,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   onChanged: (text) {
                     mobile = text;
                   },
+                  onSubmitted: (text) {
+                    sendOtp();
+                  },
                 ),
                 const SizedBox(height: 20),
                 isOtpSent
@@ -213,37 +241,53 @@ class _LoginScreenState extends State<LoginScreen> {
                         onChanged: (text) {
                           otp = text;
                         },
+                        onSubmitted: (text) {
+                          manualVerifyOtp();
+                        },
                       )
                     : const SizedBox(),
                 isOtpSent ? const SizedBox(height: 20) : const SizedBox(),
-                isOtpSent
-                    ? Text(
-                        "Reading SMS in $remainingARTS sec",
-                        style: Helper.getTheme(context).titleSmall,
-                      )
-                    : const SizedBox(),
                 SizedBox(
                   height: 50,
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: (!isOtpSent
-                        ? !isValidMobile
-                            ? null
-                            : sendOtp
-                        : !isValidOtp
-                            ? null
-                            : manualVerifyOtp),
+                    onPressed: loginState == LoginState.validMobileInput
+                        ? sendOtp
+                        : loginState == LoginState.validOtpInput
+                            ? manualVerifyOtp
+                            : null,
                     child: Text(
-                      !isOtpSent ? "Send OTP" : "Verify",
+                      loginStates[loginState.index],
                       style: TextStyle(
-                        color: (!isOtpSent && isValidMobile) ||
-                                (isOtpSent && isValidOtp)
+                        color: loginState == LoginState.validMobileInput ||
+                                loginState == LoginState.validOtpInput
                             ? Colors.white
                             : Colors.grey,
                       ),
                     ),
                   ),
                 ),
+                const SizedBox(height: 20),
+                (loginState.index >= LoginState.duplicateUser.index ||
+                            _artsTimeout) &&
+                        (loginState != LoginState.verifyingOtp ||
+                            loginState != LoginState.otpVerified)
+                    ? SizedBox(
+                        height: 20,
+                        child: GestureDetector(
+                          child: Text(
+                            "Try with another mobile number!",
+                            style: TextStyle(color: Colors.blue.shade400),
+                          ),
+                          onTap: () {
+                            setState(() {
+                              _loginState = LoginState.invalidMobileInput;
+                              _otpVerificationId = '';
+                            });
+                          },
+                        ),
+                      )
+                    : const SizedBox(),
               ],
             ),
           ),
