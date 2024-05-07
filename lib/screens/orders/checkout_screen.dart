@@ -480,12 +480,12 @@ class CheckoutScreen extends StatelessWidget {
                                         ),
                                       ],
                                     ),
-                                    Image.asset(
-                                      Helper.getAssetName(
-                                        "vector4.png",
-                                        "virtual",
-                                      ),
-                                    ),
+                                    // Image.asset(
+                                    //   Helper.getAssetName(
+                                    //     "vector4.png",
+                                    //     "virtual",
+                                    //   ),
+                                    // ),
                                     const SizedBox(
                                       height: 20,
                                     ),

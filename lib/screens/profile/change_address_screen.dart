@@ -47,25 +47,15 @@ class ChangeAddressScreen extends StatelessWidget {
                         fit: BoxFit.fitHeight,
                       ),
                     ),
-                    Positioned(
+                    const Positioned(
                       bottom: 30,
                       right: 40,
-                      child: Image.asset(
-                        Helper.getAssetName(
-                          "current_loc.png",
-                          "virtual",
-                        ),
-                      ),
+                      child: Icon(Icons.location_pin),
                     ),
-                    Positioned(
+                    const Positioned(
                       top: 70,
                       right: 180,
-                      child: Image.asset(
-                        Helper.getAssetName(
-                          "loc.png",
-                          "virtual",
-                        ),
-                      ),
+                      child: Icon(Icons.location_pin),
                     ),
                     Positioned(
                       top: 170,

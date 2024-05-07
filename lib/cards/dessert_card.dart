@@ -58,9 +58,7 @@ class DessertCard extends StatelessWidget {
                   ),
                   Row(
                     children: [
-                      Image.asset(
-                        Helper.getAssetName("star_filled.png", "virtual"),
-                      ),
+                      const Icon(Icons.star),
                       const SizedBox(
                         width: 5,
                       ),

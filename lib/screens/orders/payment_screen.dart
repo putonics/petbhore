@@ -35,12 +35,7 @@ class PaymentScreen extends StatelessWidget {
                           style: Helper.getTheme(context).headlineSmall,
                         ),
                       ),
-                      Image.asset(
-                        Helper.getAssetName(
-                          "cart.png",
-                          "virtual",
-                        ),
-                      )
+                      const Icon(Icons.shopping_cart),
                     ],
                   ),
                 ),

@@ -35,30 +35,28 @@ class OfferCard extends StatelessWidget {
               ],
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20.0),
             child: Row(
               children: [
-                Image.asset(
-                  Helper.getAssetName("star_filled.png", "virtual"),
-                ),
-                const SizedBox(
+                Icon(Icons.star),
+                SizedBox(
                   width: 5,
                 ),
-                const Text(
+                Text(
                   "4.9",
                   style: TextStyle(
                     color: AppColor.themeColor,
                   ),
                 ),
-                const SizedBox(
+                SizedBox(
                   width: 5,
                 ),
-                const Text("(124 ratings) Cafe"),
-                const SizedBox(
+                Text("(124 ratings) Cafe"),
+                SizedBox(
                   width: 5,
                 ),
-                const Padding(
+                Padding(
                   padding: EdgeInsets.only(bottom: 5),
                   child: Text(
                     ".",
@@ -67,7 +65,7 @@ class OfferCard extends StatelessWidget {
                         fontWeight: FontWeight.bold),
                   ),
                 ),
-                const Text(" Western Food"),
+                Text(" Western Food"),
               ],
             ),
           )

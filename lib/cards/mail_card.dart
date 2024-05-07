@@ -63,7 +63,7 @@ class MailCard extends StatelessWidget {
                   fontSize: 10,
                 ),
               ),
-              Image.asset(Helper.getAssetName("star.png", "virtual"))
+              const Icon(Icons.star),
             ],
           ),
         ],

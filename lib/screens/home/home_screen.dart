@@ -11,11 +11,19 @@ class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Stack(
-        children: [
-          SafeArea(
-            child: SingleChildScrollView(
+    return Scaffold(
+      bottomNavigationBar: const CustomNavBar(),
+      body: Container(
+        decoration: const BoxDecoration(
+            gradient: LinearGradient(colors: [
+          Colors.pinkAccent,
+          Colors.redAccent,
+          Colors.orangeAccent
+        ])),
+        child: SafeArea(
+          child: Container(
+            color: Colors.white,
+            child: const SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -40,8 +48,7 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
           ),
-          Positioned(bottom: 0, left: 0, child: CustomNavBar()),
-        ],
+        ),
       ),
     );
   }

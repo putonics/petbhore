@@ -28,9 +28,7 @@ class ProfileScreen extends StatelessWidget {
                             "Profile",
                             style: Helper.getTheme(context).headlineSmall,
                           ),
-                          Image.asset(
-                            Helper.getAssetName("cart.png", "virtual"),
-                          )
+                          const Icon(Icons.shopping_cart),
                         ],
                       ),
                       const SizedBox(
@@ -56,8 +54,7 @@ class ProfileScreen extends StatelessWidget {
                                 height: 20,
                                 width: 80,
                                 color: Colors.black.withOpacity(0.3),
-                                child: Image.asset(Helper.getAssetName(
-                                    "camera.png", "virtual")),
+                                child: const Icon(Icons.camera),
                               ),
                             )
                           ],
@@ -66,16 +63,14 @@ class ProfileScreen extends StatelessWidget {
                       const SizedBox(
                         height: 10,
                       ),
-                      Row(
+                      const Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Image.asset(
-                            Helper.getAssetName("edit_filled.png", "virtual"),
-                          ),
-                          const SizedBox(
+                          Icon(Icons.edit),
+                          SizedBox(
                             width: 5,
                           ),
-                          const Text(
+                          Text(
                             "Edit Profile",
                             style: TextStyle(color: AppColor.themeColor),
                           ),

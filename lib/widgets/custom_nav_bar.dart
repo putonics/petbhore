@@ -14,63 +14,66 @@ class CustomNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 120,
-      width: Helper.getScreenWidth(context),
-      child: Stack(
-        children: [
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: ClipShadow(
-              boxShadow: const [
-                BoxShadow(
-                  color: AppColor.placeholder,
-                  blurRadius: 2,
-                ),
-              ],
-              clipper: CustomNavBarClipper(),
-              child: Container(
-                height: 70,
-                width: Helper.getScreenWidth(context),
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                color: Colors.white,
-                child: const Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    NavItem(
-                      icon: Icons.shopping_basket,
-                      label: "Orders",
-                      routeName: MyOrderScreen.routeName,
-                    ),
-                    NavItem(
-                      icon: Icons.star_purple500,
-                      label: "Offers",
-                      routeName: OfferScreen.routeName,
-                    ),
-                    SizedBox(
-                      width: 80,
-                    ),
-                    NavItem(
-                      icon: Icons.person_4,
-                      label: "Profile",
-                      routeName: ProfileScreen.routeName,
-                    ),
-                    NavItem(
-                      icon: Icons.shopping_cart,
-                      label: "Cart",
-                      routeName: HomeScreen.routeName,
-                    ),
-                  ],
+    return Container(
+      color: Colors.white,
+      child: SizedBox(
+        height: 100,
+        width: Helper.getScreenWidth(context),
+        child: Stack(
+          children: [
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: ClipShadow(
+                boxShadow: const [
+                  BoxShadow(
+                    color: AppColor.placeholder,
+                    blurRadius: 2,
+                  ),
+                ],
+                clipper: CustomNavBarClipper(),
+                child: Container(
+                  height: 70,
+                  width: Helper.getScreenWidth(context),
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  color: Colors.white,
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      NavItem(
+                        icon: Icons.shopping_basket,
+                        label: "Orders",
+                        routeName: MyOrderScreen.routeName,
+                      ),
+                      NavItem(
+                        icon: Icons.star_purple500,
+                        label: "Offers",
+                        routeName: OfferScreen.routeName,
+                      ),
+                      SizedBox(
+                        width: 80,
+                      ),
+                      NavItem(
+                        icon: Icons.person_4,
+                        label: "Profile",
+                        routeName: ProfileScreen.routeName,
+                      ),
+                      NavItem(
+                        icon: Icons.shopping_cart,
+                        label: "Cart",
+                        routeName: HomeScreen.routeName,
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
-          const Align(
-            alignment: Alignment.center,
-            child: NavItemMain(routeName: HomeScreen.routeName),
-          )
-        ],
+            const Align(
+              alignment: Alignment.topCenter,
+              child: NavItemMain(routeName: HomeScreen.routeName),
+            )
+          ],
+        ),
       ),
     );
   }
@@ -90,9 +93,9 @@ class CustomNavBarClipper extends CustomClipper<Path> {
     );
     path.cubicTo(
       size.width * 0.4,
-      size.height * 0.9,
+      size.height,
       size.width * 0.6,
-      size.height * 0.9,
+      size.height,
       size.width * 0.625,
       size.height * 0.1,
     );
