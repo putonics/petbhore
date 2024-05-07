@@ -1,27 +1,16 @@
+import 'package:petbhore/widgets/nav_item.dart';
+import 'package:petbhore/widgets/nav_item_main.dart';
 import 'package:shadow_clip/shadow_clip.dart';
 import 'package:flutter/material.dart';
 import 'package:petbhore/data/colors.dart';
 import 'package:petbhore/screens/home/home_screen.dart';
-import 'package:petbhore/screens/menu_screen.dart';
 import 'package:petbhore/screens/more_screen.dart';
 import 'package:petbhore/screens/offer_screen.dart';
 import 'package:petbhore/screens/profile_screen.dart';
 import 'package:petbhore/utils/helper.dart';
 
 class CustomNavBar extends StatelessWidget {
-  final bool home;
-  final bool menu;
-  final bool offer;
-  final bool profile;
-  final bool more;
-
-  const CustomNavBar(
-      {super.key,
-      this.home = false,
-      this.menu = false,
-      this.offer = false,
-      this.profile = false,
-      this.more = false});
+  const CustomNavBar({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -36,144 +25,50 @@ class CustomNavBar extends StatelessWidget {
               boxShadow: const [
                 BoxShadow(
                   color: AppColor.placeholder,
-                  offset: Offset(
-                    0,
-                    -5,
-                  ),
-                  blurRadius: 10,
+                  blurRadius: 2,
                 ),
               ],
               clipper: CustomNavBarClipper(),
               child: Container(
-                height: 80,
+                height: 70,
                 width: Helper.getScreenWidth(context),
-                padding: const EdgeInsets.symmetric(horizontal: 20),
+                padding: const EdgeInsets.symmetric(horizontal: 10),
                 color: Colors.white,
-                child: Row(
+                child: const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    GestureDetector(
-                      onTap: () {
-                        if (!menu) {
-                          Navigator.of(context).pushNamed(MenuScreen.routeName);
-                        }
-                      },
-                      child: const Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.emoji_food_beverage,
-                            color: Color.fromARGB(255, 143, 139, 140),
-                            size: 24.0,
-                          ),
-                          Text("Orders"),
-                        ],
-                      ),
+                    NavItem(
+                      icon: Icons.shopping_basket,
+                      label: "Orders",
+                      routeName: MoreScreen.routeName,
                     ),
-                    GestureDetector(
-                      onTap: () {
-                        if (!offer) {
-                          Navigator.of(context)
-                              .pushNamed(OfferScreen.routeName);
-                        }
-                      },
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          offer
-                              ? Image.asset(
-                                  Helper.getAssetName(
-                                      "bag_filled.png", "virtual"),
-                                )
-                              : Image.asset(
-                                  Helper.getAssetName("bag.png", "virtual"),
-                                ),
-                          offer
-                              ? const Text("Offers",
-                                  style: TextStyle(color: AppColor.themeColor))
-                              : const Text("Offers"),
-                        ],
-                      ),
+                    NavItem(
+                      icon: Icons.star_purple500,
+                      label: "Offers",
+                      routeName: OfferScreen.routeName,
                     ),
-                    const SizedBox(
-                      width: 20,
+                    SizedBox(
+                      width: 80,
                     ),
-                    GestureDetector(
-                      onTap: () {
-                        if (!profile) {
-                          Navigator.of(context)
-                              .pushNamed(ProfileScreen.routeName);
-                        }
-                      },
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          profile
-                              ? Image.asset(
-                                  Helper.getAssetName(
-                                      "user_filled.png", "virtual"),
-                                )
-                              : Image.asset(
-                                  Helper.getAssetName("user.png", "virtual"),
-                                ),
-                          profile
-                              ? const Text("Profile",
-                                  style: TextStyle(color: AppColor.themeColor))
-                              : const Text("Profile"),
-                        ],
-                      ),
+                    NavItem(
+                      icon: Icons.person_4,
+                      label: "Profile",
+                      routeName: ProfileScreen.routeName,
                     ),
-                    GestureDetector(
-                      onTap: () {
-                        if (!more) {
-                          Navigator.of(context).pushNamed(MoreScreen.routeName);
-                        }
-                      },
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          more
-                              ? Image.asset(
-                                  Helper.getAssetName(
-                                      "cart_filled.png", "virtual"),
-                                )
-                              : Image.asset(
-                                  Helper.getAssetName("cart.png", "virtual"),
-                                ),
-                          more
-                              ? const Text("Cart",
-                                  style: TextStyle(color: AppColor.themeColor))
-                              : const Text("Cart"),
-                        ],
-                      ),
+                    NavItem(
+                      icon: Icons.shopping_cart,
+                      label: "Cart",
+                      routeName: HomeScreen.routeName,
                     ),
                   ],
                 ),
               ),
             ),
           ),
-          Align(
+          const Align(
             alignment: Alignment.center,
-            child: SizedBox(
-                height: 70,
-                width: 70,
-                child: Padding(
-                  padding: const EdgeInsets.all(6.0),
-                  child: GestureDetector(
-                    onTap: () {
-                      Navigator.of(context)
-                          .pushReplacementNamed(HomeScreen.routeName);
-                    },
-                    child: CircleAvatar(
-                      backgroundColor: Colors.black,
-                      child: Icon(
-                        Icons.food_bank,
-                        size: 40,
-                        color: Colors.amber,
-                      ),
-                    ),
-                  ),
-                )),
+            child: NavItemMain(routeName: HomeScreen.routeName),
           )
         ],
       ),

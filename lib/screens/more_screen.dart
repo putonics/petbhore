@@ -98,9 +98,7 @@ class MoreScreen extends StatelessWidget {
           const Positioned(
             bottom: 0,
             left: 0,
-            child: CustomNavBar(
-              more: true,
-            ),
+            child: CustomNavBar(),
           )
         ],
       ),

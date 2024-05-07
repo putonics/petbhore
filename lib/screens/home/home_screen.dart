@@ -57,12 +57,7 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
           ),
-          Positioned(
-              bottom: 0,
-              left: 0,
-              child: CustomNavBar(
-                home: true,
-              )),
+          Positioned(bottom: 0, left: 0, child: CustomNavBar()),
         ],
       ),
     );

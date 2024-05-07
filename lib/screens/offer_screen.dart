@@ -95,9 +95,7 @@ class OfferScreen extends StatelessWidget {
           const Positioned(
             bottom: 0,
             left: 0,
-            child: CustomNavBar(
-              offer: true,
-            ),
+            child: CustomNavBar(),
           )
         ],
       ),

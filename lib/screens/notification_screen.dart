@@ -80,12 +80,7 @@ class NotificationScreen extends StatelessWidget {
               ),
             ],
           )),
-          const Positioned(
-              bottom: 0,
-              left: 0,
-              child: CustomNavBar(
-                menu: true,
-              ))
+          const Positioned(bottom: 0, left: 0, child: CustomNavBar())
         ],
       ),
     );
