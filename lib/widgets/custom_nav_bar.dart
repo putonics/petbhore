@@ -1,12 +1,12 @@
+import 'package:petbhore/screens/orders/my_order_screen.dart';
 import 'package:petbhore/widgets/nav_item.dart';
 import 'package:petbhore/widgets/nav_item_main.dart';
 import 'package:shadow_clip/shadow_clip.dart';
 import 'package:flutter/material.dart';
 import 'package:petbhore/data/colors.dart';
 import 'package:petbhore/screens/home/home_screen.dart';
-import 'package:petbhore/screens/more_screen.dart';
-import 'package:petbhore/screens/offer_screen.dart';
-import 'package:petbhore/screens/profile_screen.dart';
+import 'package:petbhore/screens/offers/offer_screen.dart';
+import 'package:petbhore/screens/profile/profile_screen.dart';
 import 'package:petbhore/utils/helper.dart';
 
 class CustomNavBar extends StatelessWidget {
@@ -41,7 +41,7 @@ class CustomNavBar extends StatelessWidget {
                     NavItem(
                       icon: Icons.shopping_basket,
                       label: "Orders",
-                      routeName: MoreScreen.routeName,
+                      routeName: MyOrderScreen.routeName,
                     ),
                     NavItem(
                       icon: Icons.star_purple500,

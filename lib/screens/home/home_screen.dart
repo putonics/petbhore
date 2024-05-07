@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:petbhore/data/colors.dart';
 import 'package:petbhore/screens/home/category_bar.dart';
 import 'package:petbhore/screens/home/location_bar.dart';
 import 'package:petbhore/screens/home/recent_items.dart';
-import 'package:petbhore/screens/home/top_bar.dart';
+import 'package:petbhore/widgets/message_bar.dart';
 import 'package:petbhore/widgets/custom_nav_bar.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -20,30 +19,14 @@ class HomeScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(
-                    height: 20,
-                  ),
-                  TopBar(),
-                  SizedBox(
-                    height: 20,
+                  MessageBar(
+                    message: "Welcome!",
+                    color: BarColor.red,
+                    margin: EdgeInsets.only(bottom: 10),
                   ),
                   LocationBar(),
                   SizedBox(
                     height: 10,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20.0),
-                    child: SearchBar(
-                      hintText: "Search",
-                      elevation: MaterialStatePropertyAll(0),
-                      backgroundColor:
-                          MaterialStatePropertyAll(AppColor.placeholderBg),
-                      padding: MaterialStatePropertyAll(
-                          EdgeInsets.symmetric(horizontal: 10.0)),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 20,
                   ),
                   CategoryBar(),
                   SizedBox(

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:petbhore/controller/advertisement_card_model.dart';
 import 'package:petbhore/data/colors.dart';
-import 'package:petbhore/data/images.dart';
 import 'package:petbhore/utils/helper.dart';
 
 class RecentItemCard extends StatelessWidget {
@@ -71,7 +70,7 @@ class RecentItemCard extends StatelessWidget {
                   ),
                   Row(
                     children: [
-                      Image.asset(IconImage.starFilled),
+                      const Icon(Icons.star),
                       const SizedBox(
                         width: 5,
                       ),

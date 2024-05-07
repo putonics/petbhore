@@ -1,39 +1,33 @@
 import 'package:flutter/material.dart';
-import 'package:petbhore/data/images.dart';
-import 'package:petbhore/utils/helper.dart';
 
 class LocationBar extends StatelessWidget {
   const LocationBar({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+    return Row(
       children: [
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20),
-          child: Text("Deilivering to"),
+        const Icon(
+          Icons.location_pin,
+          color: Colors.blueGrey,
         ),
-        Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 20,
-          ),
-          child: DropdownButtonHideUnderline(
-            child: SizedBox(
-              width: 250,
-              child: DropdownButton(
-                value: "Current Location",
-                items: const [
-                  DropdownMenuItem(
-                    value: "Current Location",
-                    child: Text("Current Location"),
-                  ),
-                ],
-                icon: Image.asset(IconImage.downArrow),
-                style: Helper.getTheme(context).headlineMedium,
-                onChanged: (_) {},
+        const SizedBox(width: 10),
+        DropdownButtonHideUnderline(
+          child: DropdownButton(
+            value: "Purba Bardhaman",
+            items: const [
+              DropdownMenuItem(
+                value: "Purba Bardhaman",
+                child: Text("Purba Bardhaman"),
               ),
-            ),
+              DropdownMenuItem(
+                value: "Durgapur",
+                child: Text("Durgapur"),
+              ),
+            ],
+            icon: const Icon(Icons.keyboard_arrow_down, color: Colors.blueGrey),
+            style: const TextStyle(fontSize: 15.0, color: Colors.blueGrey),
+            onChanged: (_) {},
           ),
         ),
       ],
