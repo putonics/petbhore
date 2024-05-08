@@ -29,7 +29,7 @@ class CustomTextInput extends StatelessWidget {
       width: double.infinity,
       height: 50,
       decoration: const ShapeDecoration(
-        color: AppColor.placeholderBg,
+        color: DataColors.placeholderBg,
         shape: StadiumBorder(),
       ),
       child: TextField(
@@ -44,7 +44,7 @@ class CustomTextInput extends StatelessWidget {
           border: InputBorder.none,
           hintText: hintText,
           hintStyle: const TextStyle(
-            color: AppColor.placeholder,
+            color: DataColors.placeholder,
           ),
           contentPadding: padding,
         ),

@@ -72,7 +72,7 @@ class ProfileScreen extends StatelessWidget {
                           ),
                           Text(
                             "Edit Profile",
-                            style: TextStyle(color: AppColor.themeColor),
+                            style: TextStyle(color: DataColors.themeColor),
                           ),
                         ],
                       ),
@@ -83,7 +83,7 @@ class ProfileScreen extends StatelessWidget {
                         "Hi there Emilia!",
                         style:
                             Helper.getTheme(context).headlineMedium?.copyWith(
-                                  color: AppColor.primary,
+                                  color: DataColors.primary,
                                 ),
                       ),
                       const SizedBox(
@@ -181,7 +181,7 @@ class CustomFormImput extends StatelessWidget {
       padding: const EdgeInsets.only(left: 40),
       decoration: const ShapeDecoration(
         shape: StadiumBorder(),
-        color: AppColor.placeholderBg,
+        color: DataColors.placeholderBg,
       ),
       child: TextFormField(
         decoration: InputDecoration(

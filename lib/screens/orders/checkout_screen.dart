@@ -81,7 +81,7 @@ class CheckoutScreen extends StatelessWidget {
                 Container(
                   height: 10,
                   width: double.infinity,
-                  color: AppColor.placeholderBg,
+                  color: DataColors.placeholderBg,
                 ),
                 const SizedBox(
                   height: 20,
@@ -137,7 +137,7 @@ class CheckoutScreen extends StatelessWidget {
                                         padding: const EdgeInsets.symmetric(
                                             horizontal: 20.0),
                                         child: Divider(
-                                          color: AppColor.placeholder
+                                          color: DataColors.placeholder
                                               .withOpacity(0.5),
                                           thickness: 1.5,
                                           height: 40,
@@ -228,7 +228,7 @@ class CheckoutScreen extends StatelessWidget {
                                               onChanged: (_) {},
                                               thumbColor:
                                                   MaterialStateProperty.all(
-                                                AppColor.secondary,
+                                                DataColors.secondary,
                                               ),
                                             )
                                           ],
@@ -290,7 +290,7 @@ class CheckoutScreen extends StatelessWidget {
                         height: 15,
                         decoration: const ShapeDecoration(
                           shape: CircleBorder(
-                            side: BorderSide(color: AppColor.themeColor),
+                            side: BorderSide(color: DataColors.themeColor),
                           ),
                         ),
                       )
@@ -326,7 +326,7 @@ class CheckoutScreen extends StatelessWidget {
                         height: 15,
                         decoration: const ShapeDecoration(
                           shape: CircleBorder(
-                            side: BorderSide(color: AppColor.themeColor),
+                            side: BorderSide(color: DataColors.themeColor),
                           ),
                         ),
                       )
@@ -363,7 +363,7 @@ class CheckoutScreen extends StatelessWidget {
                         height: 15,
                         decoration: const ShapeDecoration(
                           shape: CircleBorder(
-                            side: BorderSide(color: AppColor.themeColor),
+                            side: BorderSide(color: DataColors.themeColor),
                           ),
                         ),
                       )
@@ -376,7 +376,7 @@ class CheckoutScreen extends StatelessWidget {
                 Container(
                   height: 10,
                   width: double.infinity,
-                  color: AppColor.placeholderBg,
+                  color: DataColors.placeholderBg,
                 ),
                 const SizedBox(
                   height: 20,
@@ -423,7 +423,7 @@ class CheckoutScreen extends StatelessWidget {
                       ),
                       Divider(
                         height: 40,
-                        color: AppColor.placeholder.withOpacity(0.25),
+                        color: DataColors.placeholder.withOpacity(0.25),
                         thickness: 2,
                       ),
                       Row(
@@ -445,7 +445,7 @@ class CheckoutScreen extends StatelessWidget {
                 Container(
                   height: 10,
                   width: double.infinity,
-                  color: AppColor.placeholderBg,
+                  color: DataColors.placeholderBg,
                 ),
                 const SizedBox(
                   height: 20,
@@ -492,7 +492,7 @@ class CheckoutScreen extends StatelessWidget {
                                     const Text(
                                       "Thank You!",
                                       style: TextStyle(
-                                        color: AppColor.primary,
+                                        color: DataColors.primary,
                                         fontWeight: FontWeight.w900,
                                         fontSize: 30,
                                       ),
@@ -504,7 +504,7 @@ class CheckoutScreen extends StatelessWidget {
                                       "for your order",
                                       style: Helper.getTheme(context)
                                           .headlineMedium
-                                          ?.copyWith(color: AppColor.primary),
+                                          ?.copyWith(color: DataColors.primary),
                                     ),
                                     const SizedBox(
                                       height: 20,
@@ -544,7 +544,7 @@ class CheckoutScreen extends StatelessWidget {
                                         child: const Text(
                                           "Back To Home",
                                           style: TextStyle(
-                                            color: AppColor.primary,
+                                            color: DataColors.primary,
                                             fontWeight: FontWeight.bold,
                                           ),
                                         ),

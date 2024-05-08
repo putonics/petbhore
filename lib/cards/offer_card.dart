@@ -30,7 +30,7 @@ class OfferCard extends StatelessWidget {
                   name,
                   style: Helper.getTheme(context)
                       .headlineMedium
-                      ?.copyWith(color: AppColor.primary),
+                      ?.copyWith(color: DataColors.primary),
                 )
               ],
             ),
@@ -46,7 +46,7 @@ class OfferCard extends StatelessWidget {
                 Text(
                   "4.9",
                   style: TextStyle(
-                    color: AppColor.themeColor,
+                    color: DataColors.themeColor,
                   ),
                 ),
                 SizedBox(
@@ -61,7 +61,7 @@ class OfferCard extends StatelessWidget {
                   child: Text(
                     ".",
                     style: TextStyle(
-                        color: AppColor.themeColor,
+                        color: DataColors.themeColor,
                         fontWeight: FontWeight.bold),
                   ),
                 ),

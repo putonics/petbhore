@@ -56,7 +56,7 @@ class PopularVerticalCard extends StatelessWidget {
                       ),
                       Text(
                         "${data.rating}",
-                        style: const TextStyle(color: AppColor.themeColor),
+                        style: const TextStyle(color: DataColors.themeColor),
                       ),
                       const SizedBox(
                         width: 5,
@@ -74,7 +74,7 @@ class PopularVerticalCard extends StatelessWidget {
                         child: Text(
                           ".",
                           style: TextStyle(
-                            color: AppColor.themeColor,
+                            color: DataColors.themeColor,
                             fontWeight: FontWeight.w900,
                           ),
                         ),

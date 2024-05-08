@@ -1,64 +1,16 @@
 import 'package:flutter/material.dart';
-
-enum BarColor {
-  red,
-  orange,
-  blue,
-  purple,
-  green,
-  black,
-}
+import 'package:petbhore/data/colors.dart';
 
 class MessageBar extends StatelessWidget {
-  static List<Color> getBgColor(BarColor color) {
-    switch (color) {
-      case BarColor.red:
-        return [
-          Colors.pinkAccent,
-          Colors.redAccent,
-          Colors.orangeAccent,
-        ];
-      case BarColor.orange:
-        return [
-          Colors.deepOrange,
-          Colors.amber,
-          Colors.yellow,
-        ];
-      case BarColor.blue:
-        return [
-          Colors.blueAccent,
-          Colors.lightBlueAccent,
-          Colors.cyanAccent,
-        ];
-      case BarColor.purple:
-        return [
-          Colors.purple,
-          Colors.deepPurple,
-          Colors.indigoAccent,
-        ];
-      case BarColor.green:
-        return [
-          Colors.teal,
-          Colors.green,
-          Colors.lightGreenAccent,
-        ];
-      default:
-        return [
-          Colors.black,
-          Colors.grey,
-        ];
-    }
-  }
-
   const MessageBar({
     super.key,
     required this.message,
-    this.color = BarColor.black,
+    this.colors = DataGradientColors.black,
     this.textColor = Colors.white,
     this.margin,
   });
 
-  final BarColor color;
+  final List<Color> colors;
   final String message;
   final Color textColor;
   final EdgeInsets? margin;
@@ -69,8 +21,7 @@ class MessageBar extends StatelessWidget {
         ? const SizedBox()
         : Container(
             margin: margin,
-            decoration: BoxDecoration(
-                gradient: LinearGradient(colors: getBgColor(color))),
+            decoration: BoxDecoration(gradient: LinearGradient(colors: colors)),
             width: double.infinity,
             child: Padding(
               padding: const EdgeInsets.symmetric(

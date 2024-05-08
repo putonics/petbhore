@@ -43,7 +43,7 @@ class CategoryCard extends StatelessWidget {
               data.title,
               style: Helper.getTheme(context)
                   .headlineMedium
-                  ?.copyWith(color: AppColor.primary, fontSize: 16),
+                  ?.copyWith(color: DataColors.primary, fontSize: 16),
             ),
           ],
         ),

@@ -48,7 +48,7 @@ class NotificationScreen extends StatelessWidget {
               const NotiCard(
                 title: "Your order has been delivered",
                 time: "1 h ago",
-                color: AppColor.placeholderBg,
+                color: DataColors.placeholderBg,
               ),
               const NotiCard(
                 title: "Lorem ipsum dolor sit amet, consectetur",
@@ -61,12 +61,12 @@ class NotificationScreen extends StatelessWidget {
               const NotiCard(
                 title: "Lorem ipsum dolor sit amet, consectetur",
                 time: "05 Sep 2020",
-                color: AppColor.placeholderBg,
+                color: DataColors.placeholderBg,
               ),
               const NotiCard(
                 title: "Lorem ipsum dolor sit amet, consectetur",
                 time: "12 Aug 2020",
-                color: AppColor.placeholderBg,
+                color: DataColors.placeholderBg,
               ),
               const NotiCard(
                 title: "Lorem ipsum dolor sit amet, consectetur",

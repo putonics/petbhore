@@ -56,7 +56,7 @@ class PaymentScreen extends StatelessWidget {
                 const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20.0),
                   child: Divider(
-                    color: AppColor.placeholder,
+                    color: DataColors.placeholder,
                     thickness: 1.5,
                     height: 30,
                   ),
@@ -65,10 +65,10 @@ class PaymentScreen extends StatelessWidget {
                   height: 180,
                   width: Helper.getScreenWidth(context),
                   decoration: BoxDecoration(
-                    color: AppColor.placeholderBg,
+                    color: DataColors.placeholderBg,
                     boxShadow: [
                       BoxShadow(
-                        color: AppColor.placeholder.withOpacity(0.5),
+                        color: DataColors.placeholder.withOpacity(0.5),
                         offset: const Offset(0, 20),
                         blurRadius: 20,
                         spreadRadius: 5,
@@ -88,17 +88,17 @@ class PaymentScreen extends StatelessWidget {
                             Text(
                               "Cash/Card on delivery",
                               style: TextStyle(
-                                  color: AppColor.primary,
+                                  color: DataColors.primary,
                                   fontWeight: FontWeight.bold),
                             ),
                             Icon(
                               Icons.check,
-                              color: AppColor.themeColor,
+                              color: DataColors.themeColor,
                             )
                           ],
                         ),
                         const Divider(
-                          color: AppColor.placeholder,
+                          color: DataColors.placeholder,
                           thickness: 1,
                           height: 20,
                         ),
@@ -117,21 +117,21 @@ class PaymentScreen extends StatelessWidget {
                               style: ButtonStyle(
                                   side: MaterialStateProperty.all(
                                     const BorderSide(
-                                      color: AppColor.themeColor,
+                                      color: DataColors.themeColor,
                                     ),
                                   ),
                                   shape: MaterialStateProperty.all(
                                     const StadiumBorder(),
                                   ),
                                   foregroundColor: MaterialStateProperty.all(
-                                      AppColor.themeColor)),
+                                      DataColors.themeColor)),
                               onPressed: () {},
                               child: const Text("Delete Card"),
                             )
                           ],
                         ),
                         const Divider(
-                          color: AppColor.placeholder,
+                          color: DataColors.placeholder,
                           thickness: 1,
                           height: 20,
                         ),
@@ -140,7 +140,7 @@ class PaymentScreen extends StatelessWidget {
                             Text(
                               "Other Methods",
                               style: TextStyle(
-                                  color: AppColor.primary,
+                                  color: DataColors.primary,
                                   fontWeight: FontWeight.bold),
                             )
                           ],
@@ -199,7 +199,7 @@ class PaymentScreen extends StatelessWidget {
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 20.0),
                                       child: Divider(
-                                        color: AppColor.placeholder
+                                        color: DataColors.placeholder
                                             .withOpacity(0.5),
                                         thickness: 1.5,
                                         height: 40,
@@ -285,7 +285,7 @@ class PaymentScreen extends StatelessWidget {
                                             onChanged: (_) {},
                                             thumbColor:
                                                 MaterialStateProperty.all(
-                                              AppColor.secondary,
+                                              DataColors.secondary,
                                             ),
                                           )
                                         ],

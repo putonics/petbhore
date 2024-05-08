@@ -36,7 +36,7 @@ class PopularHorizontalCard extends StatelessWidget {
               data.title,
               style: Helper.getTheme(context)
                   .headlineMedium
-                  ?.copyWith(color: AppColor.primary),
+                  ?.copyWith(color: DataColors.primary),
             ),
             Row(
               children: [
@@ -49,7 +49,7 @@ class PopularHorizontalCard extends StatelessWidget {
                   child: Text(
                     ".",
                     style: TextStyle(
-                      color: AppColor.themeColor,
+                      color: DataColors.themeColor,
                       fontWeight: FontWeight.w900,
                     ),
                   ),
@@ -68,7 +68,7 @@ class PopularHorizontalCard extends StatelessWidget {
                 Text(
                   "${data.rating}",
                   style: const TextStyle(
-                    color: AppColor.themeColor,
+                    color: DataColors.themeColor,
                   ),
                 )
               ],

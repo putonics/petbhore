@@ -58,7 +58,7 @@ class MainApp extends StatelessWidget {
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all(
-              AppColor.themeColor,
+              DataColors.themeColor,
             ),
             shape: MaterialStateProperty.all(
               const StadiumBorder(),
@@ -69,32 +69,32 @@ class MainApp extends StatelessWidget {
         textButtonTheme: TextButtonThemeData(
           style: ButtonStyle(
             foregroundColor: MaterialStateProperty.all(
-              AppColor.themeColor,
+              DataColors.themeColor,
             ),
           ),
         ),
         textTheme: const TextTheme(
           displaySmall: TextStyle(
-            color: AppColor.primary,
+            color: DataColors.primary,
             fontSize: 16,
             fontWeight: FontWeight.bold,
           ),
           headlineMedium: TextStyle(
-            color: AppColor.secondary,
+            color: DataColors.secondary,
             fontWeight: FontWeight.bold,
             fontSize: 20,
           ),
           headlineSmall: TextStyle(
-            color: AppColor.primary,
+            color: DataColors.primary,
             fontWeight: FontWeight.normal,
             fontSize: 25,
           ),
           titleLarge: TextStyle(
-            color: AppColor.primary,
+            color: DataColors.primary,
             fontSize: 25,
           ),
           bodyMedium: TextStyle(
-            color: AppColor.secondary,
+            color: DataColors.secondary,
           ),
         ),
       ),

@@ -20,7 +20,7 @@ class NotiCard extends StatelessWidget {
         color: color,
         border: const Border(
           bottom: BorderSide(
-            color: AppColor.placeholder,
+            color: DataColors.placeholder,
             width: 0.5,
           ),
         ),
@@ -30,7 +30,7 @@ class NotiCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const CircleAvatar(
-            backgroundColor: AppColor.themeColor,
+            backgroundColor: DataColors.themeColor,
             radius: 5,
           ),
           const SizedBox(
@@ -43,7 +43,7 @@ class NotiCard extends StatelessWidget {
               Text(
                 title,
                 style: const TextStyle(
-                  color: AppColor.primary,
+                  color: DataColors.primary,
                 ),
               ),
               Text(time),

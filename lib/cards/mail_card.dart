@@ -23,7 +23,7 @@ class MailCard extends StatelessWidget {
         color: color,
         border: const Border(
           bottom: BorderSide(
-            color: AppColor.placeholder,
+            color: DataColors.placeholder,
             width: 0.5,
           ),
         ),
@@ -33,7 +33,7 @@ class MailCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const CircleAvatar(
-            backgroundColor: AppColor.themeColor,
+            backgroundColor: DataColors.themeColor,
             radius: 5,
           ),
           const SizedBox(
@@ -46,7 +46,7 @@ class MailCard extends StatelessWidget {
                 Text(
                   title,
                   style: const TextStyle(
-                    color: AppColor.primary,
+                    color: DataColors.primary,
                   ),
                 ),
                 const SizedBox(height: 5),

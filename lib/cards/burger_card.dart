@@ -22,7 +22,7 @@ class BurgerCard extends StatelessWidget {
           bottom: isLast
               ? BorderSide.none
               : BorderSide(
-                  color: AppColor.placeholder.withOpacity(0.25),
+                  color: DataColors.placeholder.withOpacity(0.25),
                 ),
         ),
       ),
@@ -32,7 +32,7 @@ class BurgerCard extends StatelessWidget {
             child: Text(
               "$name x1",
               style: const TextStyle(
-                color: AppColor.primary,
+                color: DataColors.primary,
                 fontSize: 16,
               ),
             ),
@@ -40,7 +40,7 @@ class BurgerCard extends StatelessWidget {
           Text(
             "\$$price",
             style: const TextStyle(
-              color: AppColor.primary,
+              color: DataColors.primary,
               fontSize: 16,
               fontWeight: FontWeight.w900,
             ),

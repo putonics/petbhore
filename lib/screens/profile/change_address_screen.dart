@@ -67,7 +67,7 @@ class ChangeAddressScreen extends StatelessWidget {
                         ),
                         width: Helper.getScreenWidth(context) * 0.45,
                         decoration: const ShapeDecoration(
-                          color: AppColor.themeColor,
+                          color: DataColors.themeColor,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(10),
@@ -107,7 +107,7 @@ class ChangeAddressScreen extends StatelessWidget {
                         child: Container(
                           width: 30,
                           height: 30,
-                          color: AppColor.themeColor,
+                          color: DataColors.themeColor,
                         ),
                       ),
                     ),
@@ -128,11 +128,11 @@ class ChangeAddressScreen extends StatelessWidget {
                         width: 50,
                         decoration: ShapeDecoration(
                           shape: const CircleBorder(),
-                          color: AppColor.themeColor.withOpacity(0.2),
+                          color: DataColors.themeColor.withOpacity(0.2),
                         ),
                         child: const Icon(
                           Icons.star_rounded,
-                          color: AppColor.themeColor,
+                          color: DataColors.themeColor,
                           size: 30,
                         ),
                       ),
@@ -143,7 +143,7 @@ class ChangeAddressScreen extends StatelessWidget {
                         child: Text(
                           "Choose a saved place",
                           style: TextStyle(
-                            color: AppColor.primary,
+                            color: DataColors.primary,
                           ),
                         ),
                       ),

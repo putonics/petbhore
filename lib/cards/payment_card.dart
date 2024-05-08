@@ -23,10 +23,10 @@ class PaymentCard extends StatelessWidget {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
               side: BorderSide(
-                color: AppColor.placeholder.withOpacity(0.25),
+                color: DataColors.placeholder.withOpacity(0.25),
               ),
             ),
-            color: AppColor.placeholderBg,
+            color: DataColors.placeholderBg,
           ),
           child: widget),
     );

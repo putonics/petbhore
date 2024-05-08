@@ -23,7 +23,7 @@ class LandingScreen extends StatelessWidget {
               width: double.infinity,
               height: Helper.getScreenHeight(context) * 0.5,
               decoration: const ShapeDecoration(
-                color: AppColor.themeColor,
+                color: DataColors.themeColor,
                 shape: RoundedRectangleBorder(),
               ),
               child: Image.asset(AppImage.loginBackground, fit: BoxFit.cover),

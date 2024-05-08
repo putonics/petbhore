@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:petbhore/data/colors.dart';
 
 class NavItemMain extends StatelessWidget {
   const NavItemMain({
@@ -24,11 +25,7 @@ class NavItemMain extends StatelessWidget {
             decoration: const BoxDecoration(
               shape: BoxShape.circle,
               gradient: LinearGradient(
-                colors: [
-                  Colors.pinkAccent,
-                  Colors.redAccent,
-                  Colors.orangeAccent
-                ],
+                colors: DataGradientColors.red,
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
               ),

@@ -64,7 +64,7 @@ class DessertCard extends StatelessWidget {
                       ),
                       Text(
                         rating,
-                        style: const TextStyle(color: AppColor.themeColor),
+                        style: const TextStyle(color: DataColors.themeColor),
                       ),
                       const SizedBox(
                         width: 5,
@@ -80,7 +80,7 @@ class DessertCard extends StatelessWidget {
                         padding: EdgeInsets.only(bottom: 8.0),
                         child: Text(
                           ".",
-                          style: TextStyle(color: AppColor.themeColor),
+                          style: TextStyle(color: DataColors.themeColor),
                         ),
                       ),
                       const SizedBox(

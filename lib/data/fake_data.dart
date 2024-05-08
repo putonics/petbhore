@@ -66,9 +66,9 @@ const fakeMostPopular = [
 const fakeRecentItems = [
   {
     "image": "assets/images/real/pizza3.jpg",
-    "title": "Veg Thali",
-    "type": "Thali",
-    "name": "Canteen",
+    "title": "গোবিন্দ ভোগ খিচুড়ি",
+    "type": "বেগুনি",
+    "name": "ডিম্ ভাজা",
     "rating": 5.0,
     "ratingCount": 902,
   },

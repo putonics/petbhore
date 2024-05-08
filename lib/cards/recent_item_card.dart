@@ -41,7 +41,7 @@ class RecentItemCard extends StatelessWidget {
                     data.title,
                     style: Helper.getTheme(context)
                         .headlineMedium
-                        ?.copyWith(color: AppColor.primary),
+                        ?.copyWith(color: DataColors.primary),
                   ),
                   Row(
                     children: [
@@ -54,7 +54,7 @@ class RecentItemCard extends StatelessWidget {
                         child: Text(
                           ".",
                           style: TextStyle(
-                            color: AppColor.themeColor,
+                            color: DataColors.themeColor,
                             fontWeight: FontWeight.w900,
                           ),
                         ),
@@ -77,7 +77,7 @@ class RecentItemCard extends StatelessWidget {
                       Text(
                         "${data.rating}",
                         style: const TextStyle(
-                          color: AppColor.themeColor,
+                          color: DataColors.themeColor,
                         ),
                       ),
                       const SizedBox(width: 10),

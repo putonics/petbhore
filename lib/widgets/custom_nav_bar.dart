@@ -15,7 +15,7 @@ class CustomNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white,
+      color: Colors.transparent,
       child: SizedBox(
         height: 100,
         width: Helper.getScreenWidth(context),
@@ -26,7 +26,7 @@ class CustomNavBar extends StatelessWidget {
               child: ClipShadow(
                 boxShadow: const [
                   BoxShadow(
-                    color: AppColor.placeholder,
+                    color: DataColors.placeholder,
                     blurRadius: 2,
                   ),
                 ],

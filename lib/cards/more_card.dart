@@ -32,7 +32,7 @@ class MoreCard extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(5),
                 ),
-                color: AppColor.placeholderBg,
+                color: DataColors.placeholderBg,
               ),
               child: Row(
                 children: [
@@ -41,7 +41,7 @@ class MoreCard extends StatelessWidget {
                       height: 50,
                       decoration: const ShapeDecoration(
                         shape: CircleBorder(),
-                        color: AppColor.placeholder,
+                        color: DataColors.placeholder,
                       ),
                       child: image),
                   const SizedBox(
@@ -50,7 +50,7 @@ class MoreCard extends StatelessWidget {
                   Text(
                     name,
                     style: const TextStyle(
-                      color: AppColor.primary,
+                      color: DataColors.primary,
                     ),
                   ),
                 ],
@@ -63,11 +63,11 @@ class MoreCard extends StatelessWidget {
                 width: 30,
                 decoration: const ShapeDecoration(
                   shape: CircleBorder(),
-                  color: AppColor.placeholderBg,
+                  color: DataColors.placeholderBg,
                 ),
                 child: const Icon(
                   Icons.arrow_forward_ios_rounded,
-                  color: AppColor.secondary,
+                  color: DataColors.secondary,
                   size: 17,
                 ),
               ),
